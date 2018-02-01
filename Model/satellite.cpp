@@ -1,10 +1,13 @@
 #include "satellite.h"
 
-Satellite::Satellite(long double d, int ts, double dm, unsigned long int e, double vRot,int semiA, Pianeta& p):
+Satellite::Satellite(long double d, int ts, double dm, unsigned int e, double vRot, double semiA, Pianeta& p):
     Orbitante(d,ts,dm,e,vRot, semiA), pianeta(p){}
 
 Satellite::Satellite(const Orbitante& o, Pianeta& p): Orbitante(o), pianeta(p) {}
 
+Pianeta& Satellite::getPianeta() const{
+    return pianeta;
+}
 
 int Satellite::rivoluzioniAnnue() const{
     return periodoOrbitale().AnniFraz()/pianeta.periodoOrbitale().AnniFraz();

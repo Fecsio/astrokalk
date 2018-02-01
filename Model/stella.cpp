@@ -1,6 +1,6 @@
 #include "stella.h"
 
-Stella::Stella(long double d, int ts, double dm, unsigned long int e, double vRot, double mAss, double mApp):
+Stella::Stella(long double d, int ts, double dm, unsigned int e, double vRot, double mAss, double mApp):
     CorpoCeleste(d, ts, dm, e, vRot){
     if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10)
         throw std::invalid_argument("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
@@ -13,6 +13,14 @@ Stella::Stella(const CorpoCeleste& c, double mAss, double mApp): CorpoCeleste(c)
         throw std::invalid_argument("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
      magnitudineAss= mAss;
      magnitudineApp = mApp;
+}
+
+double Stella::getMAss() const{
+    return magnitudineAss;
+}
+
+double Stella::getMApp() const{
+    return magnitudineApp;
 }
 
 double Stella::distanzaTerra() const{

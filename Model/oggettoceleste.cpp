@@ -5,7 +5,7 @@
 
 const double OggettoCeleste::pi= 3.141592653589793;
 
-OggettoCeleste::OggettoCeleste(long double r, int ts, double dm, unsigned long int e): raggio(r),
+OggettoCeleste::OggettoCeleste(long double r, int ts, double dm, unsigned int e): raggio(r),
     temperaturaSuperficiale(ts), densitaMedia(dm), eta(e){}
 
 OggettoCeleste::~OggettoCeleste(){}

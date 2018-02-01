@@ -1,11 +1,18 @@
 #include "pianeta.h"
 
-Pianeta::Pianeta(long double d, int ts, double dm, unsigned long int e, double vRot,int semiA, int ossigeno, int azoto, int argon, Stella& s):
+Pianeta::Pianeta(long double d, int ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon, Stella& s):
     Orbitante(d,ts,dm,e,vRot,semiA), atmosfera(Atmosfera(ossigeno,azoto,argon)), sole(s){}
 
 Pianeta::Pianeta(const Orbitante& c, const Atmosfera& a, Stella& s):
     Orbitante(c), atmosfera(a), sole(s){}
 
+Atmosfera Pianeta::getAtm() const{
+    return atmosfera;
+}
+
+Stella& Pianeta::getStella() const{
+    return sole;
+}
 
 double Pianeta::ESI() const{
     double r = pow(1 - abs((getRaggio()- 6371)/(getRaggio()+6371)),0.57/3); //6371 = raggio terrestre

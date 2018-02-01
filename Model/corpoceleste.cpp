@@ -4,7 +4,7 @@
 
 const double CorpoCeleste::G=6.67191e-11;
 
-CorpoCeleste::CorpoCeleste(long double d, int ts, double dm, unsigned long int e, double vRot):
+CorpoCeleste::CorpoCeleste(long double d, int ts, double dm, unsigned int e, double vRot):
     OggettoCeleste(d,ts,dm,e), velRotazione(vRot){}
 
 

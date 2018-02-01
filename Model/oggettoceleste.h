@@ -13,10 +13,10 @@ private:
     double raggio;
     int temperaturaSuperficiale;
     double densitaMedia;
-    unsigned long int eta;
+    unsigned int eta;
 public:
 
-    OggettoCeleste(long double, int, double, unsigned long int);
+    OggettoCeleste(long double, int, double, unsigned int);
     virtual ~OggettoCeleste();
 
     double getRaggio() const;

@@ -1,6 +1,6 @@
 #include "orbitante.h"
 
-Orbitante::Orbitante(long double d, int ts, double dm, unsigned long int e, double vRot, int semiA):
+Orbitante::Orbitante(long double d, int ts, double dm, unsigned int e, double vRot, int semiA):
     CorpoCeleste(d,ts,dm,e,vRot),semiAsseOrbita(semiA){}
 
 

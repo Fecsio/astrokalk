@@ -1,0 +1,23 @@
+QLineEdit{
+    width: 1;
+
+}
+
+QLabel[text = "?"]:hover{
+    color: red;
+}
+
+QLineEdit{
+    width: 10em;
+
+}
+
+InputCreazione > QGroupBox > QLineEdit{
+
+    width: 3em;
+}
+
+Creati > QListWIdget{
+    width: 1em;
+
+}

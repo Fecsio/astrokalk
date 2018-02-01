@@ -8,8 +8,10 @@ class Satellite: public Orbitante
 private:
     Pianeta& pianeta;
 public:
-    Satellite(long double, int, double, unsigned long int, double,int, Pianeta&);
+    Satellite(long double, int, double, unsigned int, double, double, Pianeta&);
     Satellite(const Orbitante&, Pianeta&);
+
+    Pianeta& getPianeta() const;
 
     int rivoluzioniAnnue() const;
     bool rotazioneSincrona() const;

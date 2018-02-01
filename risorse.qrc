@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/style" lang="qss">
+        <file>View/style.qss</file>
+    </qresource>
+    <qresource prefix="/icone">
+        <file>View/Icone/satellite.png</file>
+        <file>View/Icone/stella.png</file>
+        <file>View/Icone/asteroide.png</file>
+        <file>View/Icone/pianeta.png</file>
+        <file>View/Icone/help.png</file>
+        <file>View/Icone/bad.svg</file>
+    </qresource>
+    <qresource prefix="/immagini"/>
+</RCC>

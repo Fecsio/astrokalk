@@ -1,11 +1,19 @@
-#include "View/mainwindow.h"
+#include "View/astrokalk.h"
 #include <QApplication>
+#include <QFile>
+#include <QDesktopWidget>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    Astrokalk k;
+
+    QFile stylesheet(":/style/View/style.qss");
+    stylesheet.open(QFile::ReadOnly);
+    QString style(stylesheet.readAll());
+    k.setStyleSheet(style);
+    k.setGeometry(0,0,1,1);
+    k.show();
 
     return a.exec();
 }

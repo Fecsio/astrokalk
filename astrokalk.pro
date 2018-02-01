@@ -36,7 +36,15 @@ SOURCES += \
     Model/pianeta.cpp \
     Model/satellite.cpp \
     Model/stella.cpp \
-    View/mainwindow.cpp \
+    View/astrokalk.cpp \
+    Model/model.cpp \
+    View/creazione.cpp \
+    View/disegno.cpp \
+    View/calcolo.cpp \
+    View/inputcreazione.cpp \
+    View/creati.cpp \
+    View/selezione.cpp \
+    Model/dettagli.cpp
 
 HEADERS += \
     Model/asteroide.h \
@@ -50,10 +58,23 @@ HEADERS += \
     Model/pianeta.h \
     Model/satellite.h \
     Model/stella.h \
-    View/mainwindow.h
+    View/astrokalk.h \
+    Model/model.h \
+    View/creazione.h \
+    View/disegno.h \
+    View/calcolo.h \
+    View/inputcreazione.h \
+    View/creati.h \
+    View/selezione.h \
+    Model/dettagli.h
 
-FORMS += \
-        mainwindow.ui \
+FORMS +=
 
 CONFIG += c++11
+
+DISTFILES += \
+    View/style.qss
+
+RESOURCES += \
+    risorse.qrc
 

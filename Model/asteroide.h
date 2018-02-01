@@ -8,8 +8,10 @@ class Asteroide: public OggettoCeleste
 private:
     double velocita; //km/s
 public:
-    Asteroide(long double, int, double , unsigned long int, double);
+    Asteroide(long double, int, double , unsigned int, double);
     Asteroide(const OggettoCeleste&, double);
+
+    double getVel() const;
 
     Asteroide operator+(const Asteroide&) const;
     QString paramDisegnoBase() const;

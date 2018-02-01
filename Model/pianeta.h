@@ -10,8 +10,11 @@ private:
     Atmosfera atmosfera;
     Stella& sole;
 public:
-    Pianeta(long double, int, double, unsigned long int, double,int, int ,int ,int , Stella&);
+    Pianeta(long double, int, double, unsigned int, double, double, int , int , int , Stella&);
     Pianeta(const Orbitante&, const Atmosfera&, Stella&);
+
+    Atmosfera getAtm() const;
+    Stella& getStella() const;
 
     double ESI() const;
     bool Abitabile() const;
