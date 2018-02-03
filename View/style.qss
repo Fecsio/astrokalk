@@ -1,23 +1,27 @@
-QLineEdit{
-    width: 1;
-
-}
-
-QLabel[text = "?"]:hover{
+/*QLabel[text = "?"]:hover{
     color: red;
+}*/
+
+Calcolo > QHBoxLayout > QLineEdit{
+    width: 10em;
+    }
+
+QSpacerItem{
+    width: 5em;
+
 }
 
-QLineEdit{
-    width: 10em;
+PulsanteConInput{
+    height: 3em;
+    width: 7.5em;
 
+}
+
+Selezione > QLineEdit, InputCreazione > QLineEdit{
+    width: 8em;
 }
 
 InputCreazione > QGroupBox > QLineEdit{
 
-    width: 3em;
-}
-
-Creati > QListWIdget{
-    width: 1em;
-
+    width: 2em;
 }

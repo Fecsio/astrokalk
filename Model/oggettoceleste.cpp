@@ -63,8 +63,8 @@ double OggettoCeleste::Massa() const{
     return densitaMedia*Volume();
 }
 
-long double OggettoCeleste::Superficie() const{
-    return 2*pi*pow(raggio,2);
+double OggettoCeleste::Superficie() const{
+    return 4*pi*pow(raggio,2);
 }
 
 void OggettoCeleste::fusione(const OggettoCeleste& ogg){

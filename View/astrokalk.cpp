@@ -4,7 +4,7 @@ Astrokalk::Astrokalk(QWidget *parent) : QWidget(parent){
     model = new Model();
     creazione = new Creazione(model);
     disegno = new Disegno();
-    calcolo = new Calcolo();
+    calcolo = new Calcolo(model);
     creati = new Creati(model);
 
     layoutbase = new QGridLayout(this);

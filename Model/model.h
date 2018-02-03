@@ -22,15 +22,20 @@ public:
     Stella* getStella(int ) const;
     Pianeta* getPianeta(int ) const;
     Satellite* getSatellite(int ) const;
+    OggettoCeleste* getObj(int, int) const;
 
     int getPos(OggettoCeleste*) const;
 
+    void calcola(OggettoCeleste*, const QString&, const QString& = "");
+
+    QString getResult() const;
 private:
     vector<Asteroide*> astCreati;
     vector<Stella*> steCreate;
     vector<Pianeta*> piaCreati;
     vector<Satellite*> satCreati;
     vector<vector<OggettoCeleste*>> insiemiCreati;
+    QString result;
 
 };
 

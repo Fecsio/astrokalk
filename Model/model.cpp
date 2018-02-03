@@ -38,6 +38,22 @@ Satellite* Model::getSatellite(int index) const{
     return satCreati[index];
 }
 
+OggettoCeleste* Model::getObj(int tipo, int index) const{
+    switch (tipo) {
+    case 1:
+        return getAsteroide(index);
+        break;
+    case 2:
+        return getStella(index);
+        break;
+    case 3:
+        return getPianeta(index);
+        break;
+    case 4:
+        return getSatellite(index);
+        break;
+    }
+}
 
 int Model::getSizeCreati(int x) const{
    if(x == 0) return astCreati.size();
@@ -85,3 +101,59 @@ int Model::getPos(OggettoCeleste* o) const{
     else return -1;
 }
 
+void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & param){
+    if(op == "Volume"){
+        result = QString::number(obj->Volume());
+    }
+
+    if(op == "Superficie"){
+        result = QString::number(obj->Superficie());
+    }
+
+    if(op == "Massa"){
+        result = QString::number(obj->Massa());
+    }
+
+    if(op == "VelFuga"){
+        result = QString::number(static_cast<CorpoCeleste*>(obj)->VelFuga());
+    }
+
+    if(op == "Peso"){
+        result = QString::number(static_cast<CorpoCeleste*>(obj)->CalcPeso(param.toDouble()));
+    }
+
+    if(op == "Collisione"){
+        ConseguenzaCollisione aux = static_cast<Asteroide*>(obj)->Collisione();
+        result = "La collisione rilascia " + QString::number(aux.getEn()) + "megaton di energia e provoca una magnitudo " + QString::number(aux.getMa());
+    }
+
+    if(op == "DistTerra"){
+        result = QString::number(static_cast<Stella*>(obj)->distanzaTerra());
+    }
+
+    if(op == "DistSole"){
+        result = QString::number(static_cast<Orbitante*>(obj)->distanzaSole());
+    }
+
+    if(op == "Anno"){
+        result = QString::number(static_cast<Orbitante*>(obj)->periodoOrbitale().AnniFraz());
+    }
+
+    if(op == "Abitabile"){
+        if(static_cast<Pianeta*>(obj)->Abitabile()){
+            result = "Il pianeta potrebbe essere abitabile";
+        }
+
+        else{
+            result = "Il pianeta non è abitabile";
+        }
+    }
+
+    if(op == "Eta"){
+      //  result = static_cast<Pianeta*>(obj)->etaExtraTerrestre()
+    }
+}
+
+QString Model::getResult() const{
+    return result;
+}

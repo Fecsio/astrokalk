@@ -9,6 +9,7 @@
         <file>View/Icone/pianeta.png</file>
         <file>View/Icone/help.png</file>
         <file>View/Icone/bad.svg</file>
+        <file>View/Icone/frecciasu.png</file>
     </qresource>
     <qresource prefix="/immagini"/>
 </RCC>

@@ -29,7 +29,7 @@ public:
 
     double Volume() const;
     double Massa() const;
-    long double Superficie() const;
+    double Superficie() const;
 
     double rapportaVolume(const OggettoCeleste&) const;
 

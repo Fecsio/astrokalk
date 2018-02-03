@@ -3,8 +3,12 @@
 
 #include <QWidget>
 #include <QLineEdit>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QPushButton>
 #include "Model/model.h"
 #include "Model/dettagli.h"
+#include "pulsanteconinput.h"
 
 class Calcolo : public QWidget
 {
@@ -12,9 +16,32 @@ class Calcolo : public QWidget
 
 private:
     Model *model;
-    QLineEdit *lineaOp1;
-    QLineEdit *lineaOp2;
+    QLineEdit *display;
+    QComboBox *tipo1;
+    QComboBox *tipo2;
+    QLineEdit *primoOperando;
+    QLineEdit *secondoOperando;
+    QGroupBox *operazBin;
+    QGroupBox *operazUn;
 
+    QPushButton *somma;
+    QPushButton *rapportaV;
+    QPushButton *collisione;
+
+    QPushButton *volume;
+    QPushButton *superficie;
+    QPushButton *massa;
+    QPushButton *velFuga;
+    PulsanteConInput *calcPeso;
+    QPushButton *giorno;
+    QPushButton *distTerra;
+    QPushButton *distSole;
+    QPushButton *perOrb;
+    QPushButton *isAbitabile;
+    PulsanteConInput *etaET;
+    QPushButton *velOrbitale;
+    QPushButton *hasRotSincrona;
+    QPushButton *rivol1Anno;
 
 public:
     Calcolo(Model *,QWidget *parent = nullptr);
@@ -22,6 +49,11 @@ public:
 signals:
 
 public slots:
+   void cambiaKeyboard1(int);
+   void cambiaKeyboard2(int);
+   void calcVol();
+   void calcSup();
+   void calcMass();
 };
 
 #endif // CALCOLO_H
