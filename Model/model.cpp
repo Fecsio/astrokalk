@@ -101,7 +101,7 @@ int Model::getPos(OggettoCeleste* o) const{
     else return -1;
 }
 
-void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & param){
+void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & paramgvfikkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk   ){
     if(op == "Volume"){
         result = QString::number(obj->Volume());
     }
