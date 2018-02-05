@@ -1,7 +1,7 @@
 #include "asteroide.h"
 #include <math.h>
 
-Asteroide::Asteroide(long double r, int ts, double dm, unsigned int e, double v):
+Asteroide::Asteroide(long double r, double ts, double dm, unsigned int e, double v):
     OggettoCeleste(r,ts,dm,e), velocita(v){}
 
 Asteroide::Asteroide(const OggettoCeleste& o, double v): OggettoCeleste(o), velocita(v) {}
@@ -12,9 +12,9 @@ double Asteroide::getVel() const{
 
 
 ConseguenzaCollisione Asteroide::Collisione() const{
-    double ej = (pi/12)*Massa()*pow(velocita,2);
+    long double ej = ((0.5)*Massa()*pow(10,12)*pow(velocita,2));
     unsigned int eMT = (2.39e-16)*ej;
-    double m = 0.67*log10(ej)-5.87;
+    double m = 0.67*log10(ej)-0.87;
     return ConseguenzaCollisione(eMT,m);
 }
 

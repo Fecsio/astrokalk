@@ -26,13 +26,13 @@ private:
 
     QPushButton *somma;
     QPushButton *rapportaV;
-    QPushButton *collisione;
 
     QPushButton *volume;
     QPushButton *superficie;
     QPushButton *massa;
     QPushButton *velFuga;
-    PulsanteConInput *calcPeso;
+    PulsanteConInput *peso;
+    QPushButton *collisione;
     QPushButton *giorno;
     QPushButton *distTerra;
     QPushButton *distSole;
@@ -47,13 +47,31 @@ public:
     Calcolo(Model *,QWidget *parent = nullptr);
 
 signals:
+    void oggAggiunto();
 
 public slots:
    void cambiaKeyboard1(int);
    void cambiaKeyboard2(int);
-   void calcVol();
+   /*void calcVol();
    void calcSup();
    void calcMass();
+   void calcVelFuga();
+   void calcPeso();
+   void calcColl();
+   void calcDistTerra();
+   void calcDistSole();
+   void calcAnno();
+   void calcAbitabile();
+   void calcEta();
+   void calcRotSin();
+   void calcRivolAnno();
+   void calcGiorno();
+   void calcVelOrb();
+   void calcSomma();
+   void calcRappV();*/
+   void calcUn();
+   void calcUnParam();
+   void calcBin();
 };
 
 #endif // CALCOLO_H

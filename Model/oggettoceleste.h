@@ -11,16 +11,16 @@ class OggettoCeleste
 {
 private:
     double raggio;
-    int temperaturaSuperficiale;
+    double temperaturaSuperficiale;
     double densitaMedia;
     unsigned int eta;
 public:
 
-    OggettoCeleste(long double, int, double, unsigned int);
+    OggettoCeleste(long double, double, double, unsigned int);
     virtual ~OggettoCeleste();
 
     double getRaggio() const;
-    int getTemp() const;
+    double getTemp() const;
     double getDens() const;
     unsigned long int getEta() const;
 

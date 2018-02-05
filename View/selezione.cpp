@@ -94,7 +94,7 @@ Selezione::Selezione(Model* m, QWidget *parent): QGroupBox("Dettagli selezionato
 void Selezione::dettagliAst(QListWidgetItem * q){
     foreach (QLineEdit *le, this->findChildren<QLineEdit*>()) {
         le->clear();
-        le->setDisabled(false);
+        le->setDisabled(true);
     }
 
     int indice = q->text().toInt();
@@ -162,6 +162,7 @@ void Selezione::dettagliPia(QListWidgetItem * q){
     oss->setDisabled(false);
     arg->setDisabled(false);
     sole->setDisabled(false);
+    asse->setDisabled(false);
 
     raggio->setText(QString::number(d.getRaggio()));
     temp->setText(QString::number(d.getTemp()));
@@ -190,6 +191,7 @@ void Selezione::dettagliSat(QListWidgetItem * q){
     eta->setDisabled(false);
     velRot->setDisabled(false);
     pianeta->setDisabled(false);
+    asse->setDisabled(false);
 
     raggio->setText(QString::number(d.getRaggio()));
     temp->setText(QString::number(d.getTemp()));

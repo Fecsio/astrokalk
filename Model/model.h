@@ -10,10 +10,10 @@ class Model
 {
 public:
     Model();
-    void newAsteroide(long double, int, double , unsigned long int, double);
-    void newStella(long double, int, double, unsigned long int, double, double, double);
-    void newPianeta(long double, int, double, unsigned long int, double,double, int ,int ,int , Stella&);
-    void newSatellite(long double, int, double, unsigned long int, double,double, Pianeta&);
+    void newAsteroide(double, double, double , unsigned long int, double);
+    void newStella(double, double, double, unsigned long int, double, double, double);
+    void newPianeta(double, double, double, unsigned long int, double,double, int ,int ,int , Stella&);
+    void newSatellite(double, double, double, unsigned long int, double,double, Pianeta&);
 
     int getSizeCreati(int ) const;
     int getSizeInsiemiCreati() const;
@@ -27,6 +27,7 @@ public:
     int getPos(OggettoCeleste*) const;
 
     void calcola(OggettoCeleste*, const QString&, const QString& = "");
+    void calcola(OggettoCeleste*, OggettoCeleste*, const QString&);
 
     QString getResult() const;
 private:

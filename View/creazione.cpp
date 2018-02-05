@@ -67,7 +67,7 @@ void Creazione::creaAsteroide(){
     double r = input->getRaggio().toDouble();
     double t = input->getTemp().toDouble();
     double d = input->getDens().toDouble();
-    unsigned int e = input->getEta().toInt();
+    unsigned int e = (int)input->getEta().toDouble();
     double v = input->getVel().toDouble();
     if(r <= 0 || d <= 0 || v <= 0){
         emit erroreI("Raggio, densità e velocità devono essere maggiori di 0, età maggiore o uguale a 0");
@@ -87,7 +87,7 @@ void Creazione::creaStella(){
     double r = input->getRaggio().toDouble();
     double t = input->getTemp().toDouble();
     double d = input->getDens().toDouble();
-    unsigned int e = input->getEta().toInt();
+    unsigned int e = (int)input->getEta().toDouble();
     double v = input->getVrot().toDouble();
     double mass = input->getMAss().toDouble();
     double mapp = input->getMApp().toDouble();
@@ -115,15 +115,15 @@ void Creazione::creaPianeta(){
     double r = input->getRaggio().toDouble();
     double t = input->getTemp().toDouble();
     double d = input->getDens().toDouble();
-    unsigned int e = input->getEta().toInt();
+    int e = (int)input->getEta().toDouble();
     double v = input->getVrot().toDouble();
-    int asse = input->getAsse().toDouble();
+    double asse = input->getAsse().toDouble();
     int az  = input->getAz().toInt();
     int o = input->getOss().toInt();
     int ar = input->getAr().toInt();
     int index_stella = input->getSole().toInt();
 
-    if(r <= 0 || d <= 0 || v <= 0 || asse <= 0){
+    if(r <= 0 || d <= 0 || v <= 0 || asse <= 0 || e<0){
         emit erroreI("Raggio, densità, velocità di rotazione e semiasse devono essere maggiori di 0, età maggiore o uguale a 0");
     }
 
@@ -142,7 +142,7 @@ void Creazione::creaPianeta(){
         }
 
         Stella& stella = *(model->getStella(index_stella));
-        model->newPianeta(r,t,d,e,v,asse,az,o,ar,stella);
+        model->newPianeta(r,t,d,e,v,asse,o,az,ar,stella);
         emit oggAggiunto();
     }
 }
@@ -151,7 +151,7 @@ void Creazione::creaSatellite(){
     double r = input->getRaggio().toDouble();
     double t = input->getTemp().toDouble();
     double d = input->getDens().toDouble();
-    unsigned int e = input->getEta().toDouble();
+    unsigned int e = (int)input->getEta().toDouble();
     double v = input->getVrot().toDouble();
     double asse = input->getAsse().toDouble();
     int index_pianeta = input->getPia().toInt();

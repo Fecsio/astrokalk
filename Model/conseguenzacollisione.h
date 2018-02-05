@@ -6,6 +6,7 @@ class ConseguenzaCollisione
 private:
     unsigned int energia; //megaton
     double magnitudo;
+
 public:
     ConseguenzaCollisione(unsigned int, double);
     unsigned int getEn() const;

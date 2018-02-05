@@ -1,6 +1,6 @@
 #include "satellite.h"
 
-Satellite::Satellite(long double d, int ts, double dm, unsigned int e, double vRot, double semiA, Pianeta& p):
+Satellite::Satellite(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, Pianeta& p):
     Orbitante(d,ts,dm,e,vRot, semiA), pianeta(p){}
 
 Satellite::Satellite(const Orbitante& o, Pianeta& p): Orbitante(o), pianeta(p) {}
@@ -17,7 +17,7 @@ DataOraTerrestre Satellite::periodoOrbitale() const{
     long double num = 4*pow(pi,2)*pow(getAsse(),3);
     long double den = G*(Massa()+pianeta.Massa());
     long double result = sqrt(num/den)*3.168753579e-08*365;
-    return DataOraTerrestre(ceil(result));
+    return DataOraTerrestre(result*86400);
 }
 
 
@@ -26,7 +26,7 @@ bool Satellite::rotazioneSincrona() const{ //dato che l'approssimazione puo non 
 }
 
 double Satellite::velOrbitale() const{
-    return sqrt((G*pianeta.Massa())/(pianeta.getRaggio()+getAsse()));
+    return sqrt((G*pianeta.Massa())/(pianeta.getRaggio()*pow(10,3)+getAsse()*1.5e+11))*pow(10,4);
 }
 
 double Satellite::distanzaSole() const{

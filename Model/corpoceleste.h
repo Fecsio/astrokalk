@@ -9,7 +9,7 @@ class CorpoCeleste: public OggettoCeleste
 private:
     double velRotazione; //in kh/h
 public:
-    CorpoCeleste(long double, int, double, unsigned int, double);
+    CorpoCeleste(long double, double, double, unsigned int, double);
 
     double getVRot() const;
 

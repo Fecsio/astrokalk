@@ -8,7 +8,7 @@ class Satellite: public Orbitante
 private:
     Pianeta& pianeta;
 public:
-    Satellite(long double, int, double, unsigned int, double, double, Pianeta&);
+    Satellite(long double, double, double, unsigned int, double, double, Pianeta&);
     Satellite(const Orbitante&, Pianeta&);
 
     Pianeta& getPianeta() const;

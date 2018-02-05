@@ -1,6 +1,7 @@
 #include "calcolo.h"
 #include <QLabel>
 #include <QGridLayout>
+#include <QMessageBox>
 
 Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     QLabel* top = new QLabel("Calcolo");
@@ -72,7 +73,7 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     superficie = new QPushButton("Superficie");
     massa = new QPushButton("Massa");
     velFuga = new QPushButton("Vel. di fuga");
-    calcPeso = new PulsanteConInput("Peso","PesoExtraterrestre");
+    peso = new PulsanteConInput("Peso","Peso Extraterrestre");
     giorno = new QPushButton("Durata giorno");
     distTerra = new QPushButton("Distanza dalla Terra");
     distSole = new QPushButton("Distanza dalla stella");
@@ -94,7 +95,7 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     layout_opU->addWidget(massa,2,0);
     layout_opU->addWidget(velFuga,3,0);
 
-    layout_opU->addWidget(calcPeso,0,1);
+    layout_opU->addWidget(peso,0,1);
     layout_opU->addWidget(distTerra,2,1);
     layout_opU->addWidget(distSole,3,1);
     layout_opU->addWidget(collisione,1,1);
@@ -111,7 +112,6 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     operazUn->setLayout(layout_opU);
 
     layout->addWidget(display,1,0,1,5);
-    //layout->addWidget(result,1,4);
     layout->addLayout(layout1,2,0,1,5);
     layout->addWidget(operazBin,3,0);
     layout->addWidget(operazUn,3,1,1,4);
@@ -126,12 +126,56 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     connect(tipo2, SIGNAL(currentIndexChanged(int)),
             this, SLOT(cambiaKeyboard2(int)));
 
-    connect(volume, SIGNAL(clicked(bool)),
-            this, SLOT(calcVol()));
-    connect(superficie, SIGNAL(clicked(bool)),
-            this, SLOT(calcSup()));
-    connect(massa, SIGNAL(clicked(bool)),
-            this, SLOT(calcMass()));
+    connect(volume, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(superficie, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(massa, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(velFuga, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(peso, SIGNAL(clicked()),
+            this, SLOT(calcUnParam()));
+
+    connect(collisione, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(giorno, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(distTerra, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(distSole, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(perOrb, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(isAbitabile, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(etaET, SIGNAL(clicked()),
+            this, SLOT(calcUnParam()));
+
+    connect(velOrbitale, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(hasRotSincrona, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(rivol1Anno, SIGNAL(clicked()),
+            this, SLOT(calcUn()));
+
+    connect(somma, SIGNAL(clicked()),
+            this, SLOT(calcBin()));
+
+    connect(rapportaV, SIGNAL(clicked()),
+            this, SLOT(calcBin()));
 
 }
 
@@ -173,7 +217,7 @@ void Calcolo::cambiaKeyboard1(int i){
 
         switch(i){
         case 1:
-            calcPeso->setDisabled(true);
+            peso->setDisabled(true);
             velFuga->setDisabled(true);
             distTerra->setDisabled(true);
             distSole->setDisabled(true);
@@ -189,7 +233,7 @@ void Calcolo::cambiaKeyboard1(int i){
             break;
 
         case 2:
-            calcPeso->setDisabled(false);
+            peso->setDisabled(false);
             giorno->setDisabled(false);
             velFuga->setDisabled(false);
             distTerra->setDisabled(false);
@@ -205,7 +249,7 @@ void Calcolo::cambiaKeyboard1(int i){
             break;
 
         case 3:
-            calcPeso->setDisabled(false);
+            peso->setDisabled(false);
             giorno->setDisabled(false);
             velFuga->setDisabled(false);
             distSole->setDisabled(false);
@@ -221,7 +265,7 @@ void Calcolo::cambiaKeyboard1(int i){
             break;
 
         case 4:
-            calcPeso->setDisabled(false);
+            peso->setDisabled(false);
             giorno->setDisabled(false);
             velFuga->setDisabled(false);
             distSole->setDisabled(false);
@@ -248,6 +292,7 @@ void Calcolo::cambiaKeyboard2(int i){
     }
 
     else{
+        secondoOperando->setDisabled(false);
         rapportaV->setDisabled(false);
 
         if(i == tipo1->currentIndex()){
@@ -260,7 +305,104 @@ void Calcolo::cambiaKeyboard2(int i){
      }
 }
 
+void Calcolo::calcUn(){
+    int indice = primoOperando->text().toInt();
+    int tipo = tipo1->currentIndex();
+
+    if(primoOperando->text().isEmpty() || indice >= model->getSizeCreati(tipo-1)){
+        QMessageBox err;
+        QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        QGridLayout* layoutmsg = (QGridLayout*)err.layout();
+        err.setWindowTitle("Errore");
+        err.setInformativeText("Indice per il primo operando non valido");
+        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+        err.exec();
+    }
+
+    else{
+        OggettoCeleste *aux = model->getObj(tipo,indice);
+        model->calcola(aux,qobject_cast<QPushButton*>(sender())->text());
+        display->setText(model->getResult());
+    }
+}
+
+void Calcolo::calcUnParam(){
+    int indice = primoOperando->text().toInt();
+    int tipo = tipo1->currentIndex();
+    QString op = qobject_cast<QPushButton*>(sender())->text();
+    QMessageBox err;
+    QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    QGridLayout* layoutmsg = (QGridLayout*)err.layout();
+    err.setWindowTitle("Errore");
+
+    if(primoOperando->text().isEmpty() || indice >= model->getSizeCreati(tipo-1)){
+        err.setInformativeText("<p align='center'> Indice per il primo operando non valido </p>");
+        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+        err.exec();
+    }
+
+    else if(op == "Peso Extraterrestre" && peso->getText().toDouble() <= 0){
+        err.setInformativeText("<p align='center'>Il peso deve essere >0 </p>");
+        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+        err.exec();
+        }
+
+    else if(op == "Eta extraterrestre" && !((QRegularExpression("^[0-9]{2}/[0-9]{2}/[0-9]{4}$").match(etaET->getText())).hasMatch())){
+       /* QString pattern("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
+        QRegularExpression re(pattern);
+        QRegularExpressionMatch match = re.match(etaET->getText());
+
+        if(!match.hasMatch()){*/
+            err.setInformativeText("<p align='center'>La data non ha il formato corretto</p>");
+            layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+            err.exec();
+        }
+
+    else{
+        OggettoCeleste *aux = model->getObj(tipo,indice);
+        model->calcola(aux,op, qobject_cast<PulsanteConInput*>(sender())->getText());
+        display->setText(model->getResult());
+    }
+}
+
+void Calcolo::calcBin(){
+    int indice_p = primoOperando->text().toInt();
+    int tipo_p = tipo1->currentIndex();
+    int indice_s = secondoOperando->text().toInt();
+    int tipo_s = tipo2->currentIndex();
+
+    QString op = qobject_cast<QPushButton*>(sender())->text();
+
+    if(primoOperando->text().isEmpty() || indice_p >= model->getSizeCreati(tipo_p-1) || secondoOperando->text().isEmpty() || indice_s >= model->getSizeCreati(tipo_s -1)){
+        QMessageBox err;
+        QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        QGridLayout* layoutmsg = (QGridLayout*)err.layout();
+        err.setWindowTitle("Errore");
+        err.setInformativeText("<p align='center'> Indice per il primo o secondo operando non valido</p>");
+        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+        err.exec();
+    }
+
+    else{
+        OggettoCeleste *aux1 = model->getObj(tipo_p, indice_p);
+        OggettoCeleste *aux2 = model->getObj(tipo_s, indice_s);
+
+        model->calcola(aux1, aux2, op);
+        if(op == "Somma") {
+            emit oggAggiunto();
+        }
+        display->setText(model->getResult());
+    }
+}
+/*
 void Calcolo::calcVol(){
+    int indice = primoOperando->text().toInt();
+    int tipo = tipo1->currentIndex();
+
+    if(primoOperando->text().isEmpty() || indice >= model->getSizeCreati(tipo-1)){
+        QMessageBox err;
+
+    }
     OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
     model->calcola(aux, "Volume");
     display->setText(model->getResult());
@@ -277,4 +419,125 @@ void Calcolo::calcMass(){
     model->calcola(aux, "Massa");
     display->setText(model->getResult());
 }
+
+void Calcolo::calcVelFuga(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "VelFuga");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcPeso(){
+    QMessageBox opImpossibile;
+    QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    QGridLayout* layoutmsg = (QGridLayout*)opImpossibile.layout();
+    opImpossibile.setWindowTitle("Attenzione");
+    opImpossibile.setInformativeText("<p align='center'>Il peso deve essere >0 </p>");
+    layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+
+    double p = peso->getText().toDouble();
+
+    if(p<=0) opImpossibile.exec();
+
+    else{
+        OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+        model->calcola(aux, "Peso", peso->getText());
+        display->setText(model->getResult());
+    }
+}
+
+void Calcolo::calcColl(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "Collisione");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcDistTerra(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "DistTerra");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcDistSole(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "DistSole");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcAnno(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "Anno");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcAbitabile(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "Abitabile");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcEta(){
+    QMessageBox opImpossibile;
+    QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    QGridLayout* layoutmsg = (QGridLayout*)opImpossibile.layout();
+    opImpossibile.setWindowTitle("Attenzione");
+
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    QString pattern("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
+    QRegularExpression re(pattern);
+    QRegularExpressionMatch match = re.match(etaET->getText());
+
+    if(!match.hasMatch()){
+        opImpossibile.setInformativeText("<p align='center'>La data non ha il formato corretto</p>");
+        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
+        opImpossibile.exec();
+    }
+
+    else{
+        model->calcola(aux, "Eta", etaET->getText());
+        display->setText(model->getResult());
+    }
+}
+
+void Calcolo::calcRotSin(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "RotSincrona");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcRivolAnno(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "RivolAnno");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcGiorno(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "Giorno");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcVelOrb(){
+    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    model->calcola(aux, "VelOrb");
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcSomma(){
+    OggettoCeleste *aux1 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    OggettoCeleste *aux2 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+
+    model->calcola(aux1, aux2, "Somma");
+    emit oggAggiunto();
+    display->setText(model->getResult());
+}
+
+void Calcolo::calcRappV(){
+    OggettoCeleste *aux1 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+    OggettoCeleste *aux2 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
+
+    model->calcola(aux1, aux2, "RapportaV");
+    display->setText(model->getResult());
+
+}
+*/
 

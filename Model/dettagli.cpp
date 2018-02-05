@@ -1,7 +1,7 @@
 #include "dettagli.h"
 
-Dettagli::Dettagli(Model* m, const OggettoCeleste * const c) : model(m), raggio (c->getRaggio()),
-    temp(c->getTemp()), dens (c->getDens()), eta(c->getEta()){
+Dettagli::Dettagli(Model* m, const OggettoCeleste * const c) : model(m), raggio(c->getRaggio()),
+    temp(c->getTemp()), dens(c->getDens()), eta(c->getEta()){
 
     const Asteroide *a = dynamic_cast<const Asteroide* const>(c);
     const Stella *s = dynamic_cast<const Stella* const>(c);
@@ -28,6 +28,7 @@ Dettagli::Dettagli(Model* m, const OggettoCeleste * const c) : model(m), raggio 
     }
 
     if(sat){
+        semiA = sat->getAsse();
         velRot = sat->getVRot();
         pia = model->getPos(&(sat->getPianeta()));
     }
@@ -38,7 +39,7 @@ double Dettagli::getRaggio() const{
     return raggio;
 }
 
-int Dettagli::getTemp() const{
+double Dettagli::getTemp() const{
     return temp;
 }
 
@@ -46,7 +47,7 @@ double Dettagli::getDens() const{
     return dens;
 }
 
-unsigned long int Dettagli::getEta() const{
+unsigned int Dettagli::getEta() const{
     return eta;
 }
 

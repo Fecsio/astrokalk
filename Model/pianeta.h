@@ -10,7 +10,7 @@ private:
     Atmosfera atmosfera;
     Stella& sole;
 public:
-    Pianeta(long double, int, double, unsigned int, double, double, int , int , int , Stella&);
+    Pianeta(long double, double, double, unsigned int, double, double, int , int , int , Stella&);
     Pianeta(const Orbitante&, const Atmosfera&, Stella&);
 
     Atmosfera getAtm() const;

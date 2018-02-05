@@ -4,7 +4,7 @@
 
 const double CorpoCeleste::G=6.67191e-11;
 
-CorpoCeleste::CorpoCeleste(long double d, int ts, double dm, unsigned int e, double vRot):
+CorpoCeleste::CorpoCeleste(long double d, double ts, double dm, unsigned int e, double vRot):
     OggettoCeleste(d,ts,dm,e), velRotazione(vRot){}
 
 
@@ -19,15 +19,15 @@ double CorpoCeleste::AccelerazioneGravita() const{
 
 double CorpoCeleste::CalcPeso(double peso) const{
      double aux = peso/9.80665;
-     return aux*AccelerazioneGravita();
+     return aux*AccelerazioneGravita()*pow(10,6);
 }
 
 double CorpoCeleste::VelFuga() const{
-    return sqrt((2*G*Massa())/getRaggio());
+    return sqrt((2*G*Massa()*pow(10,9))/getRaggio())*pow(10,-3);
 }
 
 DataOraTerrestre CorpoCeleste::Giorno() const{
-    return DataOraTerrestre(((getRaggio()*2)/velRotazione)*3600); //*3600 perchè diametro/velrot mi dà le ore
+    return DataOraTerrestre(((getRaggio()*2*pi)/velRotazione)*3600); //*3600 perchè diametro/velrot mi dà le ore
 }
 
 void CorpoCeleste::fusione(const OggettoCeleste& o){
@@ -36,13 +36,6 @@ void CorpoCeleste::fusione(const OggettoCeleste& o){
     velRotazione = (velRotazione+aux.velRotazione)/2;
 }
 
-    /*
-
-    if(this->OggettoCeleste::operator==(o)){
-        const CorpoCeleste& aux = dynamic_cast<const CorpoCeleste&>(o);
-        return velRotazione == aux.velRotazione;
-    }
-    return false;*/
 
 
 

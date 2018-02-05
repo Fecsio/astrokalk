@@ -8,7 +8,7 @@ class Asteroide: public OggettoCeleste
 private:
     double velocita; //km/s
 public:
-    Asteroide(long double, int, double , unsigned int, double);
+    Asteroide(long double, double, double , unsigned int, double);
     Asteroide(const OggettoCeleste&, double);
 
     double getVel() const;

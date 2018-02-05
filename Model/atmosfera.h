@@ -4,7 +4,9 @@
 
 class Atmosfera
 {
-    double ossigeno, azoto, argon;
+    double ossigeno;
+    double azoto;
+    double argon;
 public:
     Atmosfera(double =21, double =78, double = 1);
 

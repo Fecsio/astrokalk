@@ -248,7 +248,6 @@ void InputCreazione::cambiaInput(int selezione){
             if(model->getSizeCreati(1) < 1){
                 stop = true;
                 creazImpossibile.setInformativeText("<p align='center'>Impossibile creare un pianeta senza prima aver creato una stella da associarci</p>");
-                layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
                 emit setScelta('s');
                 break;
             }
@@ -273,7 +272,6 @@ void InputCreazione::cambiaInput(int selezione){
                 stop = true;
                 stopS = true;
                 creazImpossibile.setInformativeText("<p align = 'center' >Impossibile creare un satellite senza prima aver creato un pianeta da associarci</p>");
-                layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
                 break;
             }
 
@@ -297,6 +295,7 @@ void InputCreazione::cambiaInput(int selezione){
         }
 
     if(stop) {
+        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
         creazImpossibile.exec();
         if(stopS) emit setScelta('p');
     }

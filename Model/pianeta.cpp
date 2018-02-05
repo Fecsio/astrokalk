@@ -1,6 +1,6 @@
 #include "pianeta.h"
 
-Pianeta::Pianeta(long double d, int ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon, Stella& s):
+Pianeta::Pianeta(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon, Stella& s):
     Orbitante(d,ts,dm,e,vRot,semiA), atmosfera(Atmosfera(ossigeno,azoto,argon)), sole(s){}
 
 Pianeta::Pianeta(const Orbitante& c, const Atmosfera& a, Stella& s):
@@ -30,10 +30,10 @@ bool Pianeta::Abitabile() const{
 }
 
 DataOraTerrestre Pianeta::periodoOrbitale() const{
-    long double num = 4*pow(pi,2)*pow(getAsse(),3);
-    long double den = G*(Massa()+sole.Massa());
-    long double result = sqrt(num/den)*3.168753579e-08*365;
-    return DataOraTerrestre(ceil(result));
+    long double num = 4*pow(pi,2)*pow(getAsse()/6.684587123e-12,3);
+    long double den = G*(Massa()*pow(10,12)+sole.Massa()*pow(10,12));
+    long double result = sqrt(num/den)*(3.168753579e-08)*365;
+    return DataOraTerrestre(result*86400);
 }
 
 DataTerrestre Pianeta::etaExtraTerrestre(int g, int m, int a) const{
@@ -45,7 +45,7 @@ DataTerrestre Pianeta::etaExtraTerrestre(int g, int m, int a) const{
 }
 
 double Pianeta::velOrbitale() const{
-    return sqrt((G*sole.Massa())/(sole.getRaggio()+getAsse()));
+    return sqrt((G*sole.Massa())/(sole.getRaggio()*pow(10,3)+getAsse()*1.5e+11))*pow(10,4);
 }
 
 double Pianeta::distanzaSole() const{
