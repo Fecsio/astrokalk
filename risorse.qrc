@@ -11,5 +11,10 @@
         <file>View/Icone/bad.svg</file>
         <file>View/Icone/frecciasu.png</file>
     </qresource>
-    <qresource prefix="/immagini"/>
+    <qresource prefix="/immagini">
+        <file>View/immagini/stella.png</file>
+        <file>View/immagini/satellite.png</file>
+        <file>View/immagini/asteroide.png</file>
+        <file>View/immagini/pianeta.png</file>
+    </qresource>
 </RCC>

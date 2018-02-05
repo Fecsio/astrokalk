@@ -1,7 +1,3 @@
-/*QLabel[text = "?"]:hover{
-    color: red;
-}*/
-
 Calcolo > QHBoxLayout > QLineEdit{
     width: 10em;
     }
