@@ -82,48 +82,48 @@ InputCreazione::InputCreazione(Model* m, QWidget *parent) : QWidget(parent), mod
 
     QLabel *dHelpLabel = new QLabel;
     dHelpLabel->setToolTip("Densità media");
-    dHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    dHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *tHelpLabel = new QLabel;
     tHelpLabel->setToolTip("Temperatura media superficiale");
-    tHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    tHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
 
     QLabel *eHelpLabel = new QLabel;
     eHelpLabel->setToolTip("Età dell' oggetto celeste in milioni di anni");
-    eHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    eHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *vRHelpLabel = new QLabel;
     vRHelpLabel->setToolTip("Velocità di rotazione");
-    vRHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    vRHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *sAHelpLabel = new QLabel;
     sAHelpLabel->setToolTip("Semiasse maggiore dell'orbita, 1 UA = 150 milioni di km");
-    sAHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    sAHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *aHelpLabel = new QLabel;
     aHelpLabel->setToolTip("Azoto, ossigeno e argon (la somma deve essere <strong>100</strong>)");
-    aHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    aHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *pHelpLabel = new QLabel;
     pHelpLabel->setToolTip("Pianeta attorno a cui orbita, usa l'indice corrispondente nel riquadro 'Pianeti'");
-    pHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    pHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *sHelpLabel = new QLabel;
     sHelpLabel->setToolTip("Stella attorno a cui ruota, usa l'indice corrispondente nel riquadro 'Stelle'");
-    sHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    sHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *vHelpLabel = new QLabel;
     vHelpLabel->setToolTip("Velocità a cui viaggia");
-    vHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    vHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *mAssHelpLabel = new QLabel;
     mAssHelpLabel->setToolTip("Magnitudine assoluta, compresa tra -20 e 10");
-    mAssHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    mAssHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *mAppHelpLabel = new QLabel;
     mAppHelpLabel->setToolTip("Magniudine apparente, compresa tra -26.74 e 10");
-    mAppHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    mAppHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     inputs->addWidget(rLabel,0,1);
     inputs->addWidget(raggio,1,1,1,1);

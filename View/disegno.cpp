@@ -14,7 +14,7 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
 
     QLabel *HelpLabel = new QLabel;
     HelpLabel->setToolTip("<p> A = asteroide, S = stella, P = pianeta, SA = satellite.</p> <p>Il numero si riferisce all' indice corrispondente in creati^.</p> <p>Seguire la sintassi del placeholder.</p>");
-    HelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    HelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     disegnaInScalaD = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, SA-4.'", "Disegna in scala");
     disegnaInScalaE = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, SA-4.'", "Disegna in ordine di età");
@@ -53,7 +53,7 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
     layout->addWidget(sa,2,0,1,2);
     spiegaLabel = new QLabel;
     spiegaLabel->setToolTip("<p>Indica gli indici degli oggetti disegnati ordinati secondo l'ordine richiesto.</p> <p>Se ad esempio lista ordinati: 0 1, allora il più piccolo (secondo il criterio di ordinamento) ha indice 0 ed ha tipo uguale al primo oggetto disegnato.</p>");
-    spiegaLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
+    spiegaLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
     layout->addWidget(spiegaLabel, 2,2);
     spiegaLabel->setVisible(false);
     layout->setSpacing(0);
@@ -84,13 +84,13 @@ void Disegno::disegna(const QString& t, double r, int pos){
             img.load(":/immagini/View/immagini/satellite.png");
         }
 
-        if(r>50){
-            r = 50;
+        if(r>100){
+            r = 100;
         }
-        img = img.scaled(r*10,r*10,Qt::AspectRatioMode::KeepAspectRatio, Qt::SmoothTransformation);
+        img = img.scaled(r*5,r*5,Qt::AspectRatioMode::KeepAspectRatio, Qt::SmoothTransformation);
         QLabel *labelImg = new QLabel;
         labelImg->setPixmap(QPixmap::fromImage(img));
-        centrale->resize(centrale->width()+r*10, centrale->height());
+        centrale->resize(centrale->width()+r*5, centrale->height());
         if(r*10 > centrale->height()){
             centrale->setMinimumHeight(r*10);
         }
