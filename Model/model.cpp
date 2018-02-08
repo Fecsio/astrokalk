@@ -4,6 +4,29 @@
 
 Model::Model(){}
 
+Model::~Model(){
+    auto citA = astCreati.begin();
+    auto citS = steCreate.begin();
+    auto citP = piaCreati.begin();
+    auto citSA = satCreati.begin();
+
+    for(; citA!=astCreati.end(); ++citA){
+        delete *citA;
+    }
+
+    for(; citS!=steCreate.end(); ++citS){
+        delete *citS;
+    }
+
+    for(; citP!=piaCreati.end(); ++citP){
+        delete *citP;
+    }
+
+    for(; citSA!=satCreati.end(); ++citSA){
+        delete *citSA;
+    }
+
+}
 void Model::newAsteroide(double r, double ts, double dm, unsigned long int e, double v){
     Asteroide *aux = new Asteroide(r,ts,dm,e,v);
     astCreati.push_back(aux);
@@ -290,3 +313,4 @@ vector<array<QString,2>> Model::disegna(const QString& tipo, const QString& elem
     return ret;
 
 }
+

@@ -32,6 +32,7 @@ public:
     QString getResult() const;
 
     vector<array<QString,2>> disegna(const QString&, const QString&);
+    ~Model();
 private:
     vector<const Asteroide*> astCreati;
     vector<const Stella*> steCreate;
