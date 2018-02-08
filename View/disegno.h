@@ -21,7 +21,6 @@ private:
     QGridLayout *layout;
     QGridLayout *layoutimg;
     QWidget *centrale;
-    QScrollArea *scrollarea;
     QLabel *ordinati;
     QLabel *spiegaLabel;
 

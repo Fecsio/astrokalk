@@ -21,4 +21,3 @@ InputCreazione > QGroupBox > QLineEdit{
 
     width: 2em;
 }
-

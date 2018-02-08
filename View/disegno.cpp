@@ -19,6 +19,13 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
     disegnaInScalaD = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, SA-4.'", "Disegna in scala");
     disegnaInScalaE = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, SA-4.'", "Disegna in ordine di età");
     ordinati = new QLabel;
+    ordinati->setMinimumWidth(this->width()/3);
+    ordinati->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    QScrollArea *sa = new QScrollArea;
+    sa->setStyleSheet("background-color: white; height: 1em;");
+    sa->setWidget(ordinati);
+
+
 
     layout->addWidget(disegnaInScalaD,1,0);
     layout->addWidget(HelpLabel,1,1);
@@ -33,7 +40,7 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
 
     centrale->setLayout(layoutimg);
 
-    scrollarea = new QScrollArea;
+    QScrollArea *scrollarea = new QScrollArea;
     scrollarea->setStyleSheet("background-color: white; ");
     scrollarea->setWidget(centrale);
     centrale->setMinimumWidth(this->size().width());
@@ -43,11 +50,11 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
 
     layout->addWidget(scrollarea,3,0,1,3);
     layout->addWidget(top,0,0);
-    layout->addWidget(ordinati,2,0,1,2);
+    layout->addWidget(sa,2,0,1,2);
     spiegaLabel = new QLabel;
     spiegaLabel->setToolTip("<p>Indica gli indici degli oggetti disegnati ordinati secondo l'ordine richiesto.</p> <p>Se ad esempio lista ordinati: 0 1, allora il più piccolo (secondo il criterio di ordinamento) ha indice 0 ed ha tipo uguale al primo oggetto disegnato.</p>");
     spiegaLabel->setPixmap(QPixmap(":/icone/View/Icone/help.png"));
-    layout->addWidget(spiegaLabel, 2,1);
+    layout->addWidget(spiegaLabel, 2,2);
     spiegaLabel->setVisible(false);
     layout->setSpacing(0);
 
@@ -83,7 +90,7 @@ void Disegno::disegna(const QString& t, double r, int pos){
         img = img.scaled(r*10,r*10,Qt::AspectRatioMode::KeepAspectRatio, Qt::SmoothTransformation);
         QLabel *labelImg = new QLabel;
         labelImg->setPixmap(QPixmap::fromImage(img));
-        centrale->setMinimumWidth(centrale->width()+r*10);
+        centrale->resize(centrale->width()+r*10, centrale->height());
         if(r*10 > centrale->height()){
             centrale->setMinimumHeight(r*10);
         }
@@ -124,8 +131,7 @@ void Disegno::disegnaS(){
                     }
                     delete item;
                 }
-              centrale->setMinimumWidth(200);
-              centrale->setMinimumHeight(200);
+              centrale->resize(200,200);
 
 
             if(tipo == "Disegna in scala"){
@@ -147,7 +153,8 @@ void Disegno::disegnaS(){
             }
 
             spiegaLabel->setVisible(true);
-            layout->addWidget(new QLabel(model->getResult()),2,0,1,2);
+            ordinati->setMinimumWidth((model->getResult().size())*8);
+            ordinati->setText(model->getResult());
         }
         catch(EccInput& ){
             err.setInformativeText("<p align='center'> Uno o più indici di oggetto non sono validi</p>");
