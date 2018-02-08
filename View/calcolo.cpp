@@ -41,12 +41,7 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     secondoOperando->setDisabled(true);
     tipo2->setDisabled(true);
 
-    /*add1 = new QPushButton;
-    add1->setIcon(QIcon(":/icone/View/Icone/frecciasu.png"));
-    add2 = new QPushButton;
-    add2->setIcon(QIcon(":/icone/View/Icone/frecciasu.png"));*/
-
-    operazUn = new QGroupBox("Operazioni unarie (operatore 1)");
+    operazUn = new QGroupBox("Operazioni unarie (primo operando)");
     operazBin = new QGroupBox("Operazioni binarie ");
 
     QGridLayout *layout1 = new QGridLayout;
@@ -80,6 +75,7 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     perOrb = new QPushButton("Durata anno");
     isAbitabile = new QPushButton("Abitabile?");
     etaET = new PulsanteConInput("Nascita(gg/mm/yyyy)","Eta extraterrestre");
+    etaET->setToolTip("Giorno di nascita - (gg/mm/yyyy)");
     velOrbitale = new QPushButton("Vel. orbitale");
     hasRotSincrona = new QPushButton("Rotazione sincrona?");
     rivol1Anno = new QPushButton("Rivoluzioni in un anno");
@@ -320,7 +316,7 @@ void Calcolo::calcUn(){
     }
 
     else{
-        OggettoCeleste *aux = model->getObj(tipo,indice);
+        const OggettoCeleste *aux = model->getObj(tipo,indice);
         model->calcola(aux,qobject_cast<QPushButton*>(sender())->text());
         display->setText(model->getResult());
     }
@@ -329,7 +325,7 @@ void Calcolo::calcUn(){
 void Calcolo::calcUnParam(){
     int indice = primoOperando->text().toInt();
     int tipo = tipo1->currentIndex();
-    QString op = qobject_cast<QPushButton*>(sender())->text();
+    QString op = qobject_cast<PulsanteConInput*>(sender())->text();
     QMessageBox err;
     QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
     QGridLayout* layoutmsg = (QGridLayout*)err.layout();
@@ -359,7 +355,7 @@ void Calcolo::calcUnParam(){
         }
 
     else{
-        OggettoCeleste *aux = model->getObj(tipo,indice);
+        const OggettoCeleste *aux = model->getObj(tipo,indice);
         model->calcola(aux,op, qobject_cast<PulsanteConInput*>(sender())->getText());
         display->setText(model->getResult());
     }
@@ -384,8 +380,8 @@ void Calcolo::calcBin(){
     }
 
     else{
-        OggettoCeleste *aux1 = model->getObj(tipo_p, indice_p);
-        OggettoCeleste *aux2 = model->getObj(tipo_s, indice_s);
+        const OggettoCeleste *aux1 = model->getObj(tipo_p, indice_p);
+        const OggettoCeleste *aux2 = model->getObj(tipo_s, indice_s);
 
         model->calcola(aux1, aux2, op);
         if(op == "Somma") {

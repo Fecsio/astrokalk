@@ -10,7 +10,7 @@ Atmosfera Pianeta::getAtm() const{
     return atmosfera;
 }
 
-Stella& Pianeta::getStella() const{
+const Stella &Pianeta::getStella() const{
     return sole;
 }
 
@@ -65,6 +65,12 @@ QString Pianeta::paramDisegnoBase() const{
 
 array<QString,2> Pianeta::paramDisegnoDim() const{
     QString r = QString::number(getRaggio());
+    array<QString,2> aux = {paramDisegnoBase(), r};
+    return aux;
+}
+
+array<QString,2> Pianeta::paramDisegnoEt() const{
+    QString r = QString::number(getEta());
     array<QString,2> aux = {paramDisegnoBase(), r};
     return aux;
 }

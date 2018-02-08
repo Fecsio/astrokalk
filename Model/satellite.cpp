@@ -5,7 +5,7 @@ Satellite::Satellite(long double d, double ts, double dm, unsigned int e, double
 
 Satellite::Satellite(const Orbitante& o, Pianeta& p): Orbitante(o), pianeta(p) {}
 
-Pianeta& Satellite::getPianeta() const{
+const Pianeta &Satellite::getPianeta() const{
     return pianeta;
 }
 
@@ -47,5 +47,11 @@ QString Satellite::paramDisegnoBase() const{
 array<QString,2> Satellite::paramDisegnoDim() const{
     QString r = QString::number(getRaggio());
     array<QString,2> aux = {paramDisegnoBase(), r};
+    return aux;
+}
+
+array<QString,2> Satellite::paramDisegnoEt() const{
+    QString e = QString::number(getEta());
+    array<QString,2> aux = {paramDisegnoBase(), e};
     return aux;
 }

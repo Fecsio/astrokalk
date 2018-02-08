@@ -45,16 +45,9 @@ array<QString,2> Stella::paramDisegnoDim() const{ //potrei aggiungere età?
     return aux;
 }
 
-array<QString, 2> Stella::paramDisegnoDist() const{
-    QString d = QString::number(distanzaTerra());
-    array<QString, 2> aux = {paramDisegnoBase(), d};
+array<QString, 2> Stella::paramDisegnoEt() const{
+    QString e = QString::number(getEta());
+    array<QString, 2> aux = {paramDisegnoBase(), e};
     return aux;
 }
 
-vector<array<QString,2>> Stella::disegnoDistanti(vector<const Stella*>& v){
-    vector<array<QString,2>> aux;
-    for(vector<const Stella*>::iterator it = v.begin(); it!= v.end(); ++it){
-        aux.push_back((*it)->paramDisegnoDist());
-    }
-    return aux;
- }

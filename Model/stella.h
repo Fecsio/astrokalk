@@ -15,13 +15,11 @@ public:
     double getMApp() const;
 
     double distanzaTerra() const;
-    static vector<array<QString,2>> disegnoDistanti(vector<const Stella*>&); //terra al centro e orbite/stelle
-
     virtual Stella operator+(const Stella&) const;
 
     QString paramDisegnoBase() const;
     array<QString,2> paramDisegnoDim() const;
-    array<QString,2> paramDisegnoDist() const;
+    array<QString,2> paramDisegnoEt() const;
 
 };
 

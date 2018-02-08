@@ -36,3 +36,9 @@ array<QString,2> Asteroide::paramDisegnoDim() const{
     return aux;
 }
 
+array<QString,2> Asteroide::paramDisegnoEt() const{
+    QString r = QString::number(getEta());
+    array<QString,2> aux = {paramDisegnoBase(),r};
+    return aux;
+}
+

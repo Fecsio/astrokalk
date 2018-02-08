@@ -3,7 +3,7 @@
 Astrokalk::Astrokalk(QWidget *parent) : QWidget(parent){
     model = new Model();
     creazione = new Creazione(model);
-    disegno = new Disegno();
+    disegno = new Disegno(model);
     calcolo = new Calcolo(model);
     creati = new Creati(model);
 
@@ -18,12 +18,11 @@ Astrokalk::Astrokalk(QWidget *parent) : QWidget(parent){
     layoutbase->setAlignment(calcolo,Qt::AlignTop);
     layoutbase->setAlignment(creati,Qt::AlignTop);
 
-    disegno->setStyleSheet("border: 1px solid #000; background-color: white;");
-    disegno->setMinimumSize(200,100);
-
     layoutbase->setRowStretch(0,1);
     layoutbase->setRowStretch(1,2);
-    layoutbase->setRowMinimumHeight(1,500);
+
+    creati->setMinimumWidth(this->size().width());
+    creati->setMinimumHeight(this->size().height()/2);
 
     connect(creazione, SIGNAL(oggAggiunto()),
             this, SLOT(aggOgg()));

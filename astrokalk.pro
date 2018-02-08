@@ -46,7 +46,7 @@ SOURCES += \
     View/selezione.cpp \
     Model/dettagli.cpp \
     View/pulsanteconinput.cpp \
-    View/disegnato.cpp
+    Model/eccinput.cpp
 
 HEADERS += \
     Model/asteroide.h \
@@ -70,7 +70,7 @@ HEADERS += \
     View/selezione.h \
     Model/dettagli.h \
     View/pulsanteconinput.h \
-    View/disegnato.h
+    Model/eccinput.h
 
 FORMS +=
 

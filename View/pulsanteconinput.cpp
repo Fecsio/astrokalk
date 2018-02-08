@@ -1,10 +1,9 @@
 #include "pulsanteconinput.h"
 #include "QGridLayout"
-#include "QLabel"
 
 PulsanteConInput::PulsanteConInput(const QString& placeH, const QString& title, QWidget *parent) : QPushButton(parent){
     input = new QLineEdit;
-    QLabel *titolo = new QLabel(title);
+    titolo = new QLabel(title);
     input->setPlaceholderText(placeH);
     QGridLayout *aux = new QGridLayout(this);
     aux->addWidget(titolo,0,0);
@@ -14,4 +13,8 @@ PulsanteConInput::PulsanteConInput(const QString& placeH, const QString& title, 
 
 QString PulsanteConInput::getText() const{
     return input->text();
+}
+
+QString PulsanteConInput::text() const{
+    return titolo->text();
 }

@@ -1,4 +1,6 @@
 #include "model.h"
+#include "eccinput.h"
+#include <QRegularExpression>
 
 Model::Model(){}
 
@@ -22,23 +24,23 @@ void Model::newSatellite(double d, double ts, double dm, unsigned long int e, do
     satCreati.push_back(aux);
 }
 
-Asteroide* Model::getAsteroide(int index) const{
+const Asteroide* Model::getAsteroide(int index) const{
     return astCreati[index];
 }
 
-Stella* Model::getStella(int index) const{
+const Stella* Model::getStella(int index) const{
     return steCreate[index];
 }
 
-Pianeta* Model::getPianeta(int index) const{
+const Pianeta* Model::getPianeta(int index) const{
     return piaCreati[index];
 }
 
-Satellite* Model::getSatellite(int index) const{
+const Satellite* Model::getSatellite(int index) const{
     return satCreati[index];
 }
 
-OggettoCeleste* Model::getObj(int tipo, int index) const{
+const OggettoCeleste* Model::getObj(int tipo, int index) const{
     switch (tipo) {
     case 1:
         return getAsteroide(index);
@@ -53,6 +55,8 @@ OggettoCeleste* Model::getObj(int tipo, int index) const{
         return getSatellite(index);
         break;
     }
+
+    return 0;
 }
 
 int Model::getSizeCreati(int x) const{
@@ -63,35 +67,29 @@ int Model::getSizeCreati(int x) const{
    return 0;
 }
 
-int Model::getSizeInsiemiCreati() const{
-    int s = insiemiCreati.size();
-    if(s<=0) s = 0;
-    return s;
-}
-
-int Model::getPos(OggettoCeleste* o) const{
+int Model::getPos(const OggettoCeleste* o) const{
     bool trovato = false;
-    int i = 0;
+    unsigned int i = 0;
 
-    if(dynamic_cast<Asteroide*>(o)){
+    if(dynamic_cast<const Asteroide*>(o)){
         for(; i< astCreati.size() && !trovato ; ++i){
            if(astCreati[i] == o) trovato = true;
         }
     }
 
-    if(dynamic_cast<Stella*>(o)){
+    if(dynamic_cast<const Stella*>(o)){
         for(; i< steCreate.size() && !trovato ; ++i){
            if(steCreate[i] == o) trovato = true;
         }
     }
 
-    if(dynamic_cast<Pianeta*>(o)){
+    if(dynamic_cast<const Pianeta*>(o)){
         for(; i< piaCreati.size() && !trovato ; ++i){
            if(piaCreati[i] == o) trovato = true;
         }
     }
 
-    if(dynamic_cast<Satellite*>(o)){
+    if(dynamic_cast<const Satellite*>(o)){
         for(; i< satCreati.size() && !trovato ; ++i){
            if(satCreati[i] == o) trovato = true;
         }
@@ -101,7 +99,7 @@ int Model::getPos(OggettoCeleste* o) const{
     else return -1;
 }
 
-void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & param){
+void Model::calcola(const OggettoCeleste *obj, const QString& op, const QString & param){
 
     if(op == "Volume"){
         result = QString::number(obj->Volume()) + " miliardi di m^3";
@@ -116,32 +114,32 @@ void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & para
     }
 
     else if(op == "Vel. di fuga"){
-        result = QString::number(static_cast<CorpoCeleste*>(obj)->VelFuga()) + " km/s";
+        result = QString::number(static_cast<const CorpoCeleste*>(obj)->VelFuga()) + " km/s";
     }
 
     else if(op == "Peso Extraterrestre"){
-        result = "Su questo corpo celeste peseresti " + QString::number(static_cast<CorpoCeleste*>(obj)->CalcPeso(param.toDouble())) + " chili ";
+        result = "Su questo corpo celeste peseresti " + QString::number(static_cast<const CorpoCeleste*>(obj)->CalcPeso(param.toDouble())) + " chili ";
     }
 
     else if(op == "Collisione"){
-        ConseguenzaCollisione aux = static_cast<Asteroide*>(obj)->Collisione();
+        ConseguenzaCollisione aux = static_cast<const Asteroide*>(obj)->Collisione();
         result = "La collisione rilascia " + QString::number(aux.getEn()) + " milioni di megaton di energia e provoca una magnitudo " + QString::number(aux.getMa());
     }
 
     else if(op == "Distanza dalla Terra"){
-        result = QString::number(static_cast<Stella*>(obj)->distanzaTerra()) + " AU";
+        result = QString::number(static_cast<const Stella*>(obj)->distanzaTerra()) + " AU";
     }
 
     else if(op == "Distanza dalla stella"){
-        result = QString::number(static_cast<Orbitante*>(obj)->distanzaSole()) + " AU";
+        result = QString::number(static_cast<const Orbitante*>(obj)->distanzaSole()) + " AU";
     }
 
     else if(op == "Durata anno"){
-        result = QString::number(static_cast<Orbitante*>(obj)->periodoOrbitale().AnniFraz()) + " anni terrestri";
+        result = QString::number(static_cast<const Orbitante*>(obj)->periodoOrbitale().AnniFraz()) + " anni terrestri";
     }
 
     else if(op == "Abitabile?"){
-        if(static_cast<Pianeta*>(obj)->Abitabile()){
+        if(static_cast<const Pianeta*>(obj)->Abitabile()){
             result = "Il pianeta potrebbe essere abitabile";
         }
 
@@ -156,12 +154,12 @@ void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & para
       QString m = ql.at(1);
       QString a = ql.at(2);
 
-      DataTerrestre e = static_cast<Pianeta*>(obj)->etaExtraTerrestre(g.toInt(), m.toInt(), a.toInt());
+      DataTerrestre e = static_cast<const Pianeta*>(obj)->etaExtraTerrestre(g.toInt(), m.toInt(), a.toInt());
       result = "Su questo pianeta avresti: " + QString::number(e.AnniInteri()) + "anni terrestri";
     }
 
     else if(op == "Rotazione sincrona?"){
-        bool x = static_cast<Satellite*>(obj)->rotazioneSincrona();
+        bool x = static_cast<const Satellite*>(obj)->rotazioneSincrona();
         if(x){
             result = "Satellite e pianeta hanno rotazione sincrona";
         }
@@ -172,44 +170,44 @@ void Model::calcola(OggettoCeleste *obj, const QString& op, const QString & para
     }
 
     else if(op == "Rivoluzioni in un anno"){
-        result = "Il satellite compie " + QString::number(static_cast<Satellite*>(obj)->rivoluzioniAnnue()) + " in un anno del pianeta";
+        result = "Il satellite compie " + QString::number(static_cast<const Satellite*>(obj)->rivoluzioniAnnue()) + " in un anno del pianeta";
     }
 
     else if(op == "Durata giorno"){
-        DataOraTerrestre aux = static_cast<Orbitante*>(obj)->Giorno();
+        DataOraTerrestre aux = static_cast<const Orbitante*>(obj)->Giorno();
         result = "Un giorno dura " + QString::number(aux.AnniInteri()) + " anni, " + QString::number(aux.Giorni()) + " giorni, " + QString::number(aux.hour()) + " ore e " + QString::number(aux.minute()) + " minuti terrestri";
     }
 
     else if(op == "Vel. orbitale"){
-        result = QString::number(static_cast<Orbitante*>(obj)->velOrbitale());
+        result = QString::number(static_cast<const Orbitante*>(obj)->velOrbitale());
     }
 
 }
 
-void Model::calcola(OggettoCeleste *primo, OggettoCeleste *secondo, const QString &op){
+void Model::calcola(const OggettoCeleste *primo, const OggettoCeleste *secondo, const QString &op){
     if(op == "Somma"){
-        Asteroide *a = dynamic_cast<Asteroide*>(primo);
-        Stella *s = dynamic_cast<Stella*>(primo);
-        Pianeta *p = dynamic_cast<Pianeta*>(primo);
-        Satellite *sat = dynamic_cast<Satellite*>(primo);
+        const Asteroide *a = dynamic_cast<const Asteroide*>(primo);
+        const Stella *s = dynamic_cast<const Stella*>(primo);
+        const Pianeta *p = dynamic_cast<const Pianeta*>(primo);
+        const Satellite *sat = dynamic_cast<const Satellite*>(primo);
 
         if(a){
-            Asteroide *aux = new Asteroide(*a+*static_cast<Asteroide*>(secondo));
+            const Asteroide *aux = new Asteroide(*a+*static_cast<const Asteroide*>(secondo));
             astCreati.push_back(aux);
         }
 
         else if(s){
-            Stella *aux = new Stella(*s+*static_cast<Stella*>(secondo));
+            const Stella *aux = new Stella(*s+*static_cast<const Stella*>(secondo));
             steCreate.push_back(aux);
         }
 
         else if(p){
-            Pianeta *aux = new Pianeta(*p+*static_cast<Pianeta*>(secondo));
+            const Pianeta *aux = new Pianeta(*p+*static_cast<const Pianeta*>(secondo));
             piaCreati.push_back(aux);
         }
 
         else if(sat){
-            Satellite *aux = new Satellite(*sat+*static_cast<Satellite*>(secondo));
+            const Satellite *aux = new Satellite(*sat+*static_cast<const Satellite*>(secondo));
             satCreati.push_back(aux);
         }
 
@@ -224,4 +222,71 @@ void Model::calcola(OggettoCeleste *primo, OggettoCeleste *secondo, const QStrin
 
 QString Model::getResult() const{
     return result;
+}
+
+vector<array<QString,2>> Model::disegna(const QString& tipo, const QString& elem){
+    QStringList ql = elem.split(QRegExp("[, | .]"));
+    vector<const OggettoCeleste*> aux;
+
+    for(int i=0; i<ql.size()-1; ++i){
+        QString s = ql.at(i);
+        QStringList qls = s.split(QRegExp("[-]"));
+        QString t = qls.at(0);
+        QString p = qls.at(1);
+        unsigned int pos = p.toInt();
+        bool ok = true;
+
+        if(t == "A"){
+            if(pos >= astCreati.size()) {
+                ok = false;
+            }
+            else{
+                aux.push_back(astCreati[pos]);
+            }
+        }
+
+        else if(t == "S" && ok){
+            if(pos >= steCreate.size()) {
+                ok = false;
+            }
+            aux.push_back(steCreate[pos]);
+        }
+
+        else if(t == "P" && ok){
+            if(pos >= piaCreati.size()) {
+                ok = false;
+            }
+            aux.push_back(piaCreati[pos]);
+        }
+
+        else if(t == "SA" && ok){
+            if(pos >= satCreati.size()) {
+                ok = false;
+            }
+            aux.push_back(satCreati[pos]);
+        }
+
+        if(!ok) throw EccInput();
+    }
+
+    vector<array<QString,2>> ret;
+
+    if(tipo == "Disegna in scala"){
+        ret = OggettoCeleste::disegnoInScala(aux);
+    }
+
+    else{
+       ret = OggettoCeleste::disegnoInScalaEta(aux);
+    }
+
+    auto it = aux.begin();
+    QString tipoOgg;
+    result.clear();
+    result = "Indici in ordine: ";
+    for(; it!=aux.end(); ++it){
+        result = result + " " + QString::number(getPos(*it));
+    }
+
+    return ret;
+
 }

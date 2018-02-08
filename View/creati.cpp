@@ -50,6 +50,20 @@ Creati::Creati(Model* m, QGroupBox *parent) : QGroupBox(parent), model(m){
         layout->addWidget(selezione,0,1);
         layout->addLayout(layoutliste,0,0);
 
+        int w = this->size().width()/6;
+        int h = this->size().height()/3.5;
+
+        listaAst->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        listaAst->setMaximumSize(w,h);
+
+        listaSte->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        listaSte->setMaximumSize(w,h);
+
+        listaSat->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        listaSat->setMaximumSize(w,h);
+
+        listaPia->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        listaPia->setMaximumSize(w,h);
 
         connect(listaAst, SIGNAL(itemClicked(QListWidgetItem*)),
                 selezione, SLOT(dettagliAst(QListWidgetItem*)));

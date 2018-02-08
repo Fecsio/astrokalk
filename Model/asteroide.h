@@ -16,6 +16,7 @@ public:
     Asteroide operator+(const Asteroide&) const;
     QString paramDisegnoBase() const;
     array<QString,2> paramDisegnoDim() const;
+     array<QString,2> paramDisegnoEt() const;
     ConseguenzaCollisione Collisione() const;
 };
 

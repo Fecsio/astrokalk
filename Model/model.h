@@ -18,24 +18,25 @@ public:
     int getSizeCreati(int ) const;
     int getSizeInsiemiCreati() const;
 
-    Asteroide* getAsteroide(int ) const;
-    Stella* getStella(int ) const;
-    Pianeta* getPianeta(int ) const;
-    Satellite* getSatellite(int ) const;
-    OggettoCeleste* getObj(int, int) const;
+    const Asteroide* getAsteroide(int ) const;
+    const Stella* getStella(int ) const;
+    const Pianeta* getPianeta(int ) const;
+    const Satellite* getSatellite(int ) const;
+    const OggettoCeleste *getObj(int, int) const;
 
-    int getPos(OggettoCeleste*) const;
+    int getPos(const OggettoCeleste*) const;
 
-    void calcola(OggettoCeleste*, const QString&, const QString& = "");
-    void calcola(OggettoCeleste*, OggettoCeleste*, const QString&);
+    void calcola(const OggettoCeleste*, const QString&, const QString& = "");
+    void calcola(const OggettoCeleste*, const OggettoCeleste*, const QString&);
 
     QString getResult() const;
+
+    vector<array<QString,2>> disegna(const QString&, const QString&);
 private:
-    vector<Asteroide*> astCreati;
-    vector<Stella*> steCreate;
-    vector<Pianeta*> piaCreati;
-    vector<Satellite*> satCreati;
-    vector<vector<OggettoCeleste*>> insiemiCreati;
+    vector<const Asteroide*> astCreati;
+    vector<const Stella*> steCreate;
+    vector<const Pianeta*> piaCreati;
+    vector<const Satellite*> satCreati;
     QString result;
 
 };

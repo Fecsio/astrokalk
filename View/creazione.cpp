@@ -141,8 +141,8 @@ void Creazione::creaPianeta(){
             le->clear();
         }
 
-        Stella& stella = *(model->getStella(index_stella));
-        model->newPianeta(r,t,d,e,v,asse,o,az,ar,stella);
+        const Stella& stella = *(model->getStella(index_stella));
+        model->newPianeta(r,t,d,e,v,asse,o,az,ar,const_cast<Stella&>(stella));
         emit oggAggiunto();
     }
 }
@@ -170,8 +170,8 @@ void Creazione::creaSatellite(){
             le->clear();
         }
 
-        Pianeta& pianeta = *(model->getPianeta(index_pianeta));
-        model->newSatellite(r,t,d,e,v,asse,pianeta);
+        const Pianeta& pianeta = *(model->getPianeta(index_pianeta));
+        model->newSatellite(r,t,d,e,v,asse,const_cast<Pianeta&>(pianeta));
         emit oggAggiunto();
     }
 

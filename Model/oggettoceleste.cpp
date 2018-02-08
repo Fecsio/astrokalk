@@ -8,7 +8,6 @@ const double OggettoCeleste::pi= 3.141592653589793;
 OggettoCeleste::OggettoCeleste(long double r, double ts, double dm, unsigned int e): raggio(r),
     temperaturaSuperficiale(ts), densitaMedia(dm), eta(e){}
 
-OggettoCeleste::~OggettoCeleste(){}
 
 double OggettoCeleste::getRaggio() const{
     return raggio;
@@ -46,6 +45,15 @@ vector<array<QString,2>> OggettoCeleste::disegnoInScala(vector<const OggettoCele
     vec=ordinaPer(vec,'v');
     for(vector<const OggettoCeleste*>::iterator it = vec.begin(); it!=vec.end(); ++it){
         aux.push_back((*it)->paramDisegnoDim());
+    }
+    return aux;
+}
+
+vector<array<QString,2>> OggettoCeleste::disegnoInScalaEta(vector<const OggettoCeleste *>& vec){
+    vector<array<QString,2>> aux;
+    vec=ordinaPer(vec,'e');
+    for(vector<const OggettoCeleste*>::iterator it = vec.begin(); it!=vec.end(); ++it){
+        aux.push_back((*it)->paramDisegnoEt());
     }
     return aux;
 }

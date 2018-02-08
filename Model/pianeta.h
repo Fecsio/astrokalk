@@ -8,13 +8,13 @@ class Pianeta: public Orbitante
 {
 private:
     Atmosfera atmosfera;
-    Stella& sole;
+    const Stella& sole;
 public:
     Pianeta(long double, double, double, unsigned int, double, double, int , int , int , Stella&);
     Pianeta(const Orbitante&, const Atmosfera&, Stella&);
 
     Atmosfera getAtm() const;
-    Stella& getStella() const;
+    const Stella& getStella() const;
 
     double ESI() const;
     bool Abitabile() const;
@@ -29,6 +29,7 @@ public:
     virtual Pianeta operator+(const Pianeta&) const;
     QString paramDisegnoBase() const;
     array<QString,2> paramDisegnoDim() const;
+    array<QString,2> paramDisegnoEt() const;
 };
 
 #endif // PIANETA_H

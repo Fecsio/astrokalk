@@ -17,7 +17,7 @@ private:
 public:
 
     OggettoCeleste(long double, double, double, unsigned int);
-    virtual ~OggettoCeleste();
+    virtual ~OggettoCeleste() = default;
 
     double getRaggio() const;
     double getTemp() const;
@@ -26,6 +26,7 @@ public:
 
     static vector<const OggettoCeleste *> ordinaPer(vector<const OggettoCeleste *>&, char );
     static vector<array<QString,2>> disegnoInScala(vector<const OggettoCeleste *>&);
+    static vector<array<QString,2>> disegnoInScalaEta(vector<const OggettoCeleste *>&);
 
     double Volume() const;
     double Massa() const;
@@ -35,6 +36,7 @@ public:
 
     virtual QString paramDisegnoBase() const = 0;
     virtual array<QString, 2> paramDisegnoDim() const = 0;
+    virtual array<QString, 2> paramDisegnoEt() const = 0;
 
     virtual void fusione(const OggettoCeleste&); //funziona con oggetti >= nella gerarchia
 

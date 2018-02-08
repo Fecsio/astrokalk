@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QLineEdit>
+#include <QLabel>
 
 class PulsanteConInput : public QPushButton
 {
@@ -10,9 +11,11 @@ class PulsanteConInput : public QPushButton
 public:
     explicit PulsanteConInput(const QString&, const QString&, QWidget *parent = nullptr);
     QString getText() const;
+    QString text() const;
 
 private:
     QLineEdit *input;
+    QLabel *titolo;
 signals:
 
 public slots:
