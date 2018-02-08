@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/style" lang="qss">
+    <qresource lang="qss" prefix="/style">
         <file>View/style.qss</file>
     </qresource>
     <qresource prefix="/icone">
@@ -7,7 +7,6 @@
         <file>View/Icone/stella.png</file>
         <file>View/Icone/asteroide.png</file>
         <file>View/Icone/pianeta.png</file>
-        <file>View/Icone/help.png</file>
         <file>View/Icone/bad.svg</file>
         <file>View/Icone/frecciasu.png</file>
     </qresource>
