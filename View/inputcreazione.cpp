@@ -4,6 +4,7 @@
 #include <QMessageBox>
 
 InputCreazione::InputCreazione(Model* m, QWidget *parent) : QWidget(parent), model(m){
+    QGridLayout *inputs = new QGridLayout(this);
 
     QLabel *rLabel = new QLabel("Raggio:");
     raggio = new QLineEdit;
@@ -66,8 +67,6 @@ InputCreazione::InputCreazione(Model* m, QWidget *parent) : QWidget(parent), mod
 
     crea = new QPushButton("Crea");
     crea->setDisabled(true);
-
-    QGridLayout *inputs = new QGridLayout(this);
 
     //label per unita di misura
 

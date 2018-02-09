@@ -25,8 +25,6 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
     sa->setStyleSheet("background-color: white; height: 1em;");
     sa->setWidget(ordinati);
 
-
-
     layout->addWidget(disegnaInScalaD,1,0);
     layout->addWidget(HelpLabel,1,1);
     layout->addWidget(disegnaInScalaE,1,2);
@@ -43,7 +41,6 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
     QScrollArea *scrollarea = new QScrollArea;
     scrollarea->setStyleSheet("background-color: white; ");
     scrollarea->setWidget(centrale);
-    //centrale->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     centrale->setMinimumHeight(400);
     scrollarea->setMinimumHeight(300);
 

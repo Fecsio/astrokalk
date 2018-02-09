@@ -37,7 +37,7 @@ Creati::Creati(Model* m, QWidget *parent) : QGroupBox(parent), model(m){
         }
 
         QGridLayout *layout = new QGridLayout(this);
-        QGridLayout *layoutliste = new QGridLayout();
+        QGridLayout *layoutliste = new QGridLayout;
 
         layoutliste->addWidget(labelA,0,0);
         layoutliste->addWidget(labelS,0,1);

@@ -15,11 +15,11 @@ public:
     void disegna(const QString&, double, int);
 
 private:
+    QGridLayout *layout;
+    QGridLayout *layoutimg;
     PulsanteConInput *disegnaInScalaD;
     PulsanteConInput *disegnaInScalaE;
     Model *model;
-    QGridLayout *layout;
-    QGridLayout *layoutimg;
     QWidget *centrale;
     QLabel *ordinati;
     QLabel *spiegaLabel;

@@ -52,23 +52,6 @@ signals:
 public slots:
    void cambiaKeyboard1(int);
    void cambiaKeyboard2(int);
-   /*void calcVol();
-   void calcSup();
-   void calcMass();
-   void calcVelFuga();
-   void calcPeso();
-   void calcColl();
-   void calcDistTerra();
-   void calcDistSole();
-   void calcAnno();
-   void calcAbitabile();
-   void calcEta();
-   void calcRotSin();
-   void calcRivolAnno();
-   void calcGiorno();
-   void calcVelOrb();
-   void calcSomma();
-   void calcRappV();*/
    void calcUn();
    void calcUnParam();
    void calcBin();

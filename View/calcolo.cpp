@@ -4,9 +4,10 @@
 #include <QMessageBox>
 
 Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
+    QGridLayout* layout = new QGridLayout(this);
+
     QLabel* top = new QLabel("Calcolo");
     top->setStyleSheet("font-weight: bold;");
-    QGridLayout* layout = new QGridLayout(this);
     layout->addWidget(top,0,0);
 
     QIcon a(":/icone/View/Icone/asteroide.png");
@@ -342,11 +343,6 @@ void Calcolo::calcUnParam(){
         }
 
     else if(op == "Eta extraterrestre" && !((QRegularExpression("^[0-9]{2}/[0-9]{2}/[0-9]{4}$").match(etaET->getText())).hasMatch())){
-       /* QString pattern("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
-        QRegularExpression re(pattern);
-        QRegularExpressionMatch match = re.match(etaET->getText());
-
-        if(!match.hasMatch()){*/
             err.setInformativeText("<p align='center'>La data non ha il formato corretto</p>");
             layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
             err.exec();
@@ -388,150 +384,3 @@ void Calcolo::calcBin(){
         display->setText(model->getResult());
     }
 }
-/*
-void Calcolo::calcVol(){
-    int indice = primoOperando->text().toInt();
-    int tipo = tipo1->currentIndex();
-
-    if(primoOperando->text().isEmpty() || indice >= model->getSizeCreati(tipo-1)){
-        QMessageBox err;
-
-    }
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Volume");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcSup(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Superficie");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcMass(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Massa");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcVelFuga(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "VelFuga");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcPeso(){
-    QMessageBox opImpossibile;
-    QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    QGridLayout* layoutmsg = (QGridLayout*)opImpossibile.layout();
-    opImpossibile.setWindowTitle("Attenzione");
-    opImpossibile.setInformativeText("<p align='center'>Il peso deve essere >0 </p>");
-    layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
-
-    double p = peso->getText().toDouble();
-
-    if(p<=0) opImpossibile.exec();
-
-    else{
-        OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-        model->calcola(aux, "Peso", peso->getText());
-        display->setText(model->getResult());
-    }
-}
-
-void Calcolo::calcColl(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Collisione");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcDistTerra(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "DistTerra");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcDistSole(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "DistSole");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcAnno(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Anno");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcAbitabile(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Abitabile");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcEta(){
-    QMessageBox opImpossibile;
-    QSpacerItem* horizontalSpacer = new QSpacerItem(800, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    QGridLayout* layoutmsg = (QGridLayout*)opImpossibile.layout();
-    opImpossibile.setWindowTitle("Attenzione");
-
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    QString pattern("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
-    QRegularExpression re(pattern);
-    QRegularExpressionMatch match = re.match(etaET->getText());
-
-    if(!match.hasMatch()){
-        opImpossibile.setInformativeText("<p align='center'>La data non ha il formato corretto</p>");
-        layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
-        opImpossibile.exec();
-    }
-
-    else{
-        model->calcola(aux, "Eta", etaET->getText());
-        display->setText(model->getResult());
-    }
-}
-
-void Calcolo::calcRotSin(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "RotSincrona");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcRivolAnno(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "RivolAnno");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcGiorno(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "Giorno");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcVelOrb(){
-    OggettoCeleste *aux = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    model->calcola(aux, "VelOrb");
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcSomma(){
-    OggettoCeleste *aux1 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    OggettoCeleste *aux2 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-
-    model->calcola(aux1, aux2, "Somma");
-    emit oggAggiunto();
-    display->setText(model->getResult());
-}
-
-void Calcolo::calcRappV(){
-    OggettoCeleste *aux1 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-    OggettoCeleste *aux2 = model->getObj(tipo1->currentIndex(), primoOperando->text().toInt());
-
-    model->calcola(aux1, aux2, "RapportaV");
-    display->setText(model->getResult());
-
-}
-*/
-

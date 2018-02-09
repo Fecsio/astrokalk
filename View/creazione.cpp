@@ -3,6 +3,8 @@
 #include <QMessageBox>
 
 Creazione::Creazione(Model *m, QWidget *parent) : QWidget(parent), model(m){
+    QGridLayout* layout = new QGridLayout(this);
+
     QLabel* top = new QLabel("Creazione oggetti");
     top->setStyleSheet("font-weight: bold;");
 
@@ -11,7 +13,7 @@ Creazione::Creazione(Model *m, QWidget *parent) : QWidget(parent), model(m){
     QIcon p(":/icone/View/Icone/pianeta.png");
     QIcon sa(":/icone/View/Icone/satellite.png");
 
-    scelta = new QComboBox();
+    scelta = new QComboBox;
     scelta->addItem("Scegli un oggetto");
     scelta->addItem(a,"Asteroide");
     scelta->addItem(s,"Stella");
@@ -20,9 +22,6 @@ Creazione::Creazione(Model *m, QWidget *parent) : QWidget(parent), model(m){
 
 
     input = new InputCreazione(model);
-
-
-    QGridLayout* layout = new QGridLayout(this);
 
     layout->addWidget(top,0,0);
     layout->addWidget(scelta,1,0);
