@@ -29,6 +29,7 @@ Astrokalk::Astrokalk(QWidget *parent) : QWidget(parent){
 
     connect(calcolo, SIGNAL(oggAggiunto()),
             this, SLOT(aggOgg()));
+
 }
 
 void Astrokalk::aggOgg(){
