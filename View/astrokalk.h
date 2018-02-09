@@ -13,6 +13,7 @@ class Astrokalk : public QWidget
     Q_OBJECT
 public:
     Astrokalk(QWidget * = nullptr);
+    ~Astrokalk();
 private:
     QGridLayout* layoutbase;
     Model* model;
@@ -26,5 +27,7 @@ signals:
 public slots:
     void aggOgg();
 };
+
+
 
 #endif // ASTROKALK_H

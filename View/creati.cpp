@@ -2,7 +2,7 @@
 #include <QLabel>
 #include <QGridLayout>
 
-Creati::Creati(Model* m, QGroupBox *parent) : QGroupBox(parent), model(m){
+Creati::Creati(Model* m, QWidget *parent) : QGroupBox(parent), model(m){
         listaAst = new QListWidget();
         listaSte = new QListWidget();
         listaPia = new QListWidget();

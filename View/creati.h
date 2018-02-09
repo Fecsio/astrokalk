@@ -10,7 +10,7 @@ class Creati : public QGroupBox
 {
     Q_OBJECT
 public:
-    Creati(Model*, QGroupBox *parent = nullptr);
+    Creati(Model*, QWidget *parent = nullptr);
 private:
     Model* model;
     QListWidget *listaAst;

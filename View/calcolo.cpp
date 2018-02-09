@@ -17,8 +17,6 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
     display = new QLineEdit;
     display->setReadOnly(true);
 
-    //result = new QPushButton("=");
-
     tipo1 = new QComboBox;
     tipo1->addItem("Tipo operando");
     tipo1->addItem(a,"Asteroide");

@@ -67,7 +67,7 @@ Selezione::Selezione(Model* m, QWidget *parent): QGroupBox("Dettagli selezionato
     layout->addWidget(mAss,5,3);
     layout->addWidget(mApp,6,3);
 
-    layout->setAlignment(rLabel, Qt::AlignRight);
+    /*layout->setAlignment(rLabel, Qt::AlignRight);
     layout->setAlignment(tLabel, Qt::AlignRight);
     layout->setAlignment(dLabel, Qt::AlignRight);
     layout->setAlignment(eLabel, Qt::AlignRight);
@@ -80,12 +80,13 @@ Selezione::Selezione(Model* m, QWidget *parent): QGroupBox("Dettagli selezionato
     layout->setAlignment(arLabel, Qt::AlignRight);
     layout->setAlignment(velLabel, Qt::AlignRight);
     layout->setAlignment(mAssLabel, Qt::AlignRight);
-    layout->setAlignment(mAppLabel, Qt::AlignRight);
+    layout->setAlignment(mAppLabel, Qt::AlignRight);*/
 
     this->setLayout(layout);
     //this->setTitle("Dettagli selezionato");
 
     foreach (QLineEdit* le, this->findChildren<QLineEdit*>()) {
+        le->setStyleSheet("width: 1em;");
        le->setDisabled(true);
        le->setReadOnly(true);
     }
@@ -112,8 +113,7 @@ void Selezione::dettagliAst(QListWidgetItem * q){
     dens->setText(QString::number(d.getDens()));
     eta->setText(QString::number(d.getEta()));
     vel->setText(QString::number(d.getVel()));
-    raggio->update();
-    raggio->repaint();
+
 }
 
 void Selezione::dettagliSte(QListWidgetItem * q){

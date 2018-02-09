@@ -13,10 +13,10 @@ PulsanteConInput{
 
 }
 
-Selezione > QLineEdit, InputCreazione > QLineEdit{
-    width: 8em;
+/*Selezione > QLineEdit, InputCreazione > QLineEdit{
+    width: 2em;
 }
-
+*/
 InputCreazione > QGroupBox > QLineEdit{
 
     width: 2em;

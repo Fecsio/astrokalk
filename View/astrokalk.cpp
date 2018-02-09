@@ -21,9 +21,6 @@ Astrokalk::Astrokalk(QWidget *parent) : QWidget(parent){
     layoutbase->setRowStretch(0,1);
     layoutbase->setRowStretch(1,2);
 
-    creati->setMinimumWidth(this->size().width());
-    creati->setMinimumHeight(this->size().height()/2);
-
     connect(creazione, SIGNAL(oggAggiunto()),
             this, SLOT(aggOgg()));
 
@@ -41,4 +38,8 @@ void Astrokalk::aggOgg(){
     layoutbase->addWidget(creati,0,1);
     delete aux;
     aux = 0;
+}
+
+Astrokalk::~Astrokalk(){
+    delete model;
 }

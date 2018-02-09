@@ -43,16 +43,15 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
     QScrollArea *scrollarea = new QScrollArea;
     scrollarea->setStyleSheet("background-color: white; ");
     scrollarea->setWidget(centrale);
-    centrale->setMinimumWidth(this->size().width());
-    centrale->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-    centrale->setMinimumHeight(500);
-    scrollarea->setMinimumHeight(this->height()/2);
+    //centrale->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    centrale->setMinimumHeight(400);
+    scrollarea->setMinimumHeight(300);
 
     layout->addWidget(scrollarea,3,0,1,3);
     layout->addWidget(top,0,0);
     layout->addWidget(sa,2,0,1,2);
     spiegaLabel = new QLabel;
-    spiegaLabel->setToolTip("<p>Indica gli indici degli oggetti disegnati ordinati secondo l'ordine richiesto.</p> <p>Se ad esempio lista ordinati: 0 1, allora il più piccolo (secondo il criterio di ordinamento) ha indice 0 ed ha tipo uguale al primo oggetto disegnato.</p>");
+    spiegaLabel->setToolTip("<p>Indica gli indici degli oggetti disegnati ordinati secondo l'ordine richiesto.</p> <p>Se ad esempio 'indici in ordine: 0 1', allora il più piccolo (secondo il criterio di ordinamento) ha indice 0 ed ha tipo uguale al primo oggetto disegnato, 1 è l'indice del secondo piu piccolo e cosi via.</p>");
     spiegaLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
     layout->addWidget(spiegaLabel, 2,2);
     spiegaLabel->setVisible(false);
@@ -92,7 +91,7 @@ void Disegno::disegna(const QString& t, double r, int pos){
         labelImg->setPixmap(QPixmap::fromImage(img));
         centrale->resize(centrale->width()+r*5, centrale->height());
         if(r*10 > centrale->height()){
-            centrale->setMinimumHeight(r*10);
+            centrale->resize(centrale->width(),r*5);
         }
         layoutimg->addWidget(labelImg,0,pos);
 
