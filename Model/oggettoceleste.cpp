@@ -5,8 +5,12 @@
 
 const double OggettoCeleste::pi= 3.141592653589793;
 
-OggettoCeleste::OggettoCeleste(long double r, double ts, double dm, unsigned int e): raggio(r),
-    temperaturaSuperficiale(ts), densitaMedia(dm), eta(e){}
+OggettoCeleste::OggettoCeleste(double r, double ts, double dm, unsigned int e): raggio(r),
+    temperaturaSuperficiale(ts), densitaMedia(dm), eta(e){
+    if(r <= 0 || ts <= 0 || e < 0){
+        throw EccInput();
+    }
+}
 
 
 double OggettoCeleste::getRaggio() const{
@@ -33,7 +37,6 @@ vector<const OggettoCeleste*> OggettoCeleste::ordinaPer(vector<const OggettoCele
 
                 if(condizione == 'v') return *primo < *secondo;
                 else return primo->eta < secondo->eta;
-                //else throw exception
             }
     );
 

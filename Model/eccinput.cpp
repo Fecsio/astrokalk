@@ -1,3 +1,3 @@
 #include "eccinput.h"
 
-EccInput::EccInput(){}
+EccInput::EccInput():logic_error("Errore input"){}

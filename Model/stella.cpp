@@ -1,18 +1,15 @@
 #include "stella.h"
 
 Stella::Stella(long double d, double ts, double dm, unsigned int e, double vRot, double mAss, double mApp):
-    CorpoCeleste(d, ts, dm, e, vRot){
-    if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10)
-        throw std::invalid_argument("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
-     magnitudineAss= mAss;
-     magnitudineApp = mApp;
+    CorpoCeleste(d, ts, dm, e, vRot), magnitudineAss(mAss), magnitudineApp(mApp){
+    if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10){
+            throw EccInput();
+    }
 }
 
-Stella::Stella(const CorpoCeleste& c, double mAss, double mApp): CorpoCeleste(c){
+Stella::Stella(const CorpoCeleste& c, double mAss, double mApp): CorpoCeleste(c),magnitudineAss(mAss), magnitudineApp(mApp){
     if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10)
-        throw std::invalid_argument("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
-     magnitudineAss= mAss;
-     magnitudineApp = mApp;
+        throw EccInput();
 }
 
 double Stella::getMAss() const{
@@ -39,7 +36,7 @@ QString Stella::paramDisegnoBase() const{
     return QString("Stella");
 }
 
-array<QString,2> Stella::paramDisegnoDim() const{ //potrei aggiungere età?
+array<QString,2> Stella::paramDisegnoDim() const{
     QString r = QString::number(getRaggio());
     array<QString,2> aux = {paramDisegnoBase(), r};
     return aux;

@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <QString>
+#include "eccinput.h"
 using std::vector;
 using std::array;
 
@@ -16,7 +17,7 @@ private:
     unsigned int eta;
 public:
 
-    OggettoCeleste(long double, double, double, unsigned int);
+    OggettoCeleste(double, double, double, unsigned int);
     virtual ~OggettoCeleste() = default;
 
     double getRaggio() const;
