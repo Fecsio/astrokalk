@@ -3,13 +3,13 @@
 Stella::Stella(long double d, double ts, double dm, unsigned int e, double vRot, double mAss, double mApp):
     CorpoCeleste(d, ts, dm, e, vRot), magnitudineAss(mAss), magnitudineApp(mApp){
     if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10){
-            throw EccInput();
+            throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
     }
 }
 
 Stella::Stella(const CorpoCeleste& c, double mAss, double mApp): CorpoCeleste(c),magnitudineAss(mAss), magnitudineApp(mApp){
     if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10)
-        throw EccInput();
+        throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
 }
 
 double Stella::getMAss() const{

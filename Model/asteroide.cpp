@@ -4,13 +4,13 @@
 Asteroide::Asteroide(long double r, double ts, double dm, unsigned int e, double v):
     OggettoCeleste(r,ts,dm,e), velocita(v){
     if(v <= 0){
-        throw EccInput();
+        throw EccInput("Velocità deve essere > 0");
     }
 }
 
 Asteroide::Asteroide(const OggettoCeleste& o, double v): OggettoCeleste(o), velocita(v) {
     if(v <= 0){
-        throw EccInput();
+        throw EccInput("Velocità deve essere > 0");
     }
 }
 

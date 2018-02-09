@@ -1,18 +1,10 @@
 #include "pianeta.h"
 
-Pianeta::Pianeta(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon, Stella& s):
-    Orbitante(d,ts,dm,e,vRot,semiA), atmosfera(Atmosfera(ossigeno,azoto,argon)), sole(s){
-    if(!s){
-        throw EccInput();
-    }
-}
+Pianeta::Pianeta(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon,const Stella& s):
+    Orbitante(d,ts,dm,e,vRot,semiA), atmosfera(Atmosfera(ossigeno,azoto,argon)), sole(s){}
 
-Pianeta::Pianeta(const Orbitante& c, const Atmosfera& a, Stella& s):
-    Orbitante(c), atmosfera(a), sole(s){
-    if(!s){
-        throw EccInput();
-    }
-}
+Pianeta::Pianeta(const Orbitante& c, const Atmosfera& a, const Stella& s):
+    Orbitante(c), atmosfera(a), sole(s){}
 
 Atmosfera Pianeta::getAtm() const{
     return atmosfera;

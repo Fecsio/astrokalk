@@ -23,7 +23,7 @@ public:
     double getRaggio() const;
     double getTemp() const;
     double getDens() const;
-    unsigned long int getEta() const;
+    unsigned int getEta() const;
 
     static vector<const OggettoCeleste *> ordinaPer(vector<const OggettoCeleste *>&, char );
     static vector<array<QString,2>> disegnoInScala(vector<const OggettoCeleste *>&);

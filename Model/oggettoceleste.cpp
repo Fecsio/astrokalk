@@ -7,8 +7,8 @@ const double OggettoCeleste::pi= 3.141592653589793;
 
 OggettoCeleste::OggettoCeleste(double r, double ts, double dm, unsigned int e): raggio(r),
     temperaturaSuperficiale(ts), densitaMedia(dm), eta(e){
-    if(r <= 0 || ts <= 0 || e < 0){
-        throw EccInput();
+    if(r <= 0 || ts <= 0){
+        throw EccInput("Raggio e temperatura superficiale devono essere > 0");
     }
 }
 
@@ -25,7 +25,7 @@ double OggettoCeleste::getDens() const{
     return densitaMedia;
 }
 
-unsigned long OggettoCeleste::getEta() const{
+unsigned int OggettoCeleste::getEta() const{
     return eta;
 }
 
@@ -67,7 +67,7 @@ double OggettoCeleste::Volume()const{
 }
 
 double OggettoCeleste::rapportaVolume(const OggettoCeleste& ogg) const{
-    return (*this).Volume()/ogg.Volume();
+    return Volume()/ogg.Volume();
 }
 
 double OggettoCeleste::Massa() const{

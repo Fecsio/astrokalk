@@ -1,17 +1,9 @@
 #include "satellite.h"
 
-Satellite::Satellite(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, Pianeta& p):
-    Orbitante(d,ts,dm,e,vRot, semiA), pianeta(p){
-    if(!p){
-        throw EccInput();
-    }
-}
+Satellite::Satellite(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, const Pianeta &p):
+    Orbitante(d,ts,dm,e,vRot, semiA), pianeta(p){}
 
-Satellite::Satellite(const Orbitante& o, Pianeta& p): Orbitante(o), pianeta(p) {
-    if(!p){
-        throw EccInput();
-    }
-}
+Satellite::Satellite(const Orbitante& o, const Pianeta& p): Orbitante(o), pianeta(p) {}
 
 const Pianeta &Satellite::getPianeta() const{
     return pianeta;

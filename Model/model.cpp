@@ -289,7 +289,7 @@ vector<array<QString,2>> Model::disegna(const QString& tipo, const QString& elem
             aux.push_back(satCreati[pos]);
         }
 
-        if(!ok) throw EccInput();
+        if(!ok) throw EccInput("Indice errato");
     }
 
     vector<array<QString,2>> ret;

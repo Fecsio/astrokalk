@@ -3,7 +3,7 @@
 Orbitante::Orbitante(long double d, double ts, double dm, unsigned int e, double vRot, double semiA):
     CorpoCeleste(d,ts,dm,e,vRot),semiAsseOrbita(semiA){
     if(semiA <= 0){
-        throw EccInput();
+        throw EccInput("Semiasse deve essere > 0");
     }
 }
 

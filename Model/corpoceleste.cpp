@@ -7,7 +7,7 @@ const double CorpoCeleste::G=6.67191e-11;
 CorpoCeleste::CorpoCeleste(long double d, double ts, double dm, unsigned int e, double vRot):
     OggettoCeleste(d,ts,dm,e), velRotazione(vRot){
     if(vRot <= 0){
-        throw EccInput();
+        throw EccInput("Velocità di rotazione deve essere > 0");
     }
 }
 
