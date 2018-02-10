@@ -4,8 +4,8 @@
 
 const double CorpoCeleste::G=6.67191e-11;
 
-CorpoCeleste::CorpoCeleste(long double d, double ts, double dm, unsigned int e, double vRot):
-    OggettoCeleste(d,ts,dm,e), velRotazione(vRot){
+CorpoCeleste::CorpoCeleste(double r, double ts, double dm, unsigned int e, double vRot):
+    OggettoCeleste(r,ts,dm,e), velRotazione(vRot){
     if(vRot <= 0){
         throw EccInput("Velocità di rotazione deve essere > 0");
     }
@@ -36,7 +36,7 @@ DataOraTerrestre CorpoCeleste::Giorno() const{
 
 void CorpoCeleste::fusione(const OggettoCeleste& o){
     const CorpoCeleste& aux = dynamic_cast<const CorpoCeleste&>(o); //potevo mettere static_cast perchè con i miei metodi ho la certezza che i tipi siano giusti, ma per il futuro ho tenuto dynamic. Cioè se in futuro fusione potrà venire chiamata con tipi diversi (es: stella d'invocazione e asteroide passato come argomento), l'esecuzione porterebbe a un std::bad_cast
-    this->OggettoCeleste::fusione(o);
+    OggettoCeleste::fusione(o);
     velRotazione = (velRotazione+aux.velRotazione)/2;
 }
 

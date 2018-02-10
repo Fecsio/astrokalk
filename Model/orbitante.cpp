@@ -1,7 +1,7 @@
 #include "orbitante.h"
 
-Orbitante::Orbitante(long double d, double ts, double dm, unsigned int e, double vRot, double semiA):
-    CorpoCeleste(d,ts,dm,e,vRot),semiAsseOrbita(semiA){
+Orbitante::Orbitante(double r, double ts, double dm, unsigned int e, double vRot, double semiA):
+    CorpoCeleste(r,ts,dm,e,vRot),semiAsseOrbita(semiA){
     if(semiA <= 0){
         throw EccInput("Semiasse deve essere > 0");
     }

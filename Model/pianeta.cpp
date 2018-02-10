@@ -1,7 +1,7 @@
 #include "pianeta.h"
 
-Pianeta::Pianeta(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon,const Stella& s):
-    Orbitante(d,ts,dm,e,vRot,semiA), atmosfera(Atmosfera(ossigeno,azoto,argon)), sole(s){}
+Pianeta::Pianeta(double r, double ts, double dm, unsigned int e, double vRot, double semiA, int ossigeno, int azoto, int argon,const Stella& s):
+    Orbitante(r,ts,dm,e,vRot,semiA), atmosfera(Atmosfera(ossigeno,azoto,argon)), sole(s){}
 
 Pianeta::Pianeta(const Orbitante& c, const Atmosfera& a, const Stella& s):
     Orbitante(c), atmosfera(a), sole(s){}
@@ -63,14 +63,3 @@ QString Pianeta::paramDisegnoBase() const{
     return QString("Pianeta");
 }
 
-array<QString,2> Pianeta::paramDisegnoDim() const{
-    QString r = QString::number(getRaggio());
-    array<QString,2> aux = {paramDisegnoBase(), r};
-    return aux;
-}
-
-array<QString,2> Pianeta::paramDisegnoEt() const{
-    QString r = QString::number(getEta());
-    array<QString,2> aux = {paramDisegnoBase(), r};
-    return aux;
-}

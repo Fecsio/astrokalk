@@ -7,7 +7,7 @@ class Orbitante: public CorpoCeleste
 private:
     double semiAsseOrbita; //in unita astronomiche (1 UA = 150.000.000 km)
 public:
-    Orbitante(long double, double, double, unsigned int, double, double);
+    Orbitante(double, double, double, unsigned int, double, double);
 
     void fusione(const OggettoCeleste&);
 

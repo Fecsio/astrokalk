@@ -36,8 +36,8 @@ public:
     double rapportaVolume(const OggettoCeleste&) const;
 
     virtual QString paramDisegnoBase() const = 0;
-    virtual array<QString, 2> paramDisegnoDim() const = 0;
-    virtual array<QString, 2> paramDisegnoEt() const = 0;
+    array<QString, 2> paramDisegnoDim() const;
+    array<QString, 2> paramDisegnoEt() const;
 
     virtual void fusione(const OggettoCeleste&); //funziona con oggetti >= nella gerarchia
 

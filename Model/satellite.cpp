@@ -1,7 +1,7 @@
 #include "satellite.h"
 
-Satellite::Satellite(long double d, double ts, double dm, unsigned int e, double vRot, double semiA, const Pianeta &p):
-    Orbitante(d,ts,dm,e,vRot, semiA), pianeta(p){}
+Satellite::Satellite(double r, double ts, double dm, unsigned int e, double vRot, double semiA, const Pianeta &p):
+    Orbitante(r,ts,dm,e,vRot, semiA), pianeta(p){}
 
 Satellite::Satellite(const Orbitante& o, const Pianeta& p): Orbitante(o), pianeta(p) {}
 
@@ -42,16 +42,4 @@ Satellite Satellite::operator+(const Satellite& o) const{
 
 QString Satellite::paramDisegnoBase() const{
     return QString("Satellite");
-}
-
-array<QString,2> Satellite::paramDisegnoDim() const{
-    QString r = QString::number(getRaggio());
-    array<QString,2> aux = {paramDisegnoBase(), r};
-    return aux;
-}
-
-array<QString,2> Satellite::paramDisegnoEt() const{
-    QString e = QString::number(getEta());
-    array<QString,2> aux = {paramDisegnoBase(), e};
-    return aux;
 }

@@ -8,7 +8,7 @@ class Satellite: public Orbitante
 private:
     const Pianeta& pianeta;
 public:
-    Satellite(long double, double, double, unsigned int, double, double, const Pianeta&);
+    Satellite(double, double, double, unsigned int, double, double, const Pianeta&);
     Satellite(const Orbitante&, const Pianeta&);
 
     const Pianeta& getPianeta() const;
@@ -22,8 +22,6 @@ public:
     double velOrbitale() const;
     double distanzaSole() const;
     QString paramDisegnoBase() const;
-    array<QString,2> paramDisegnoDim() const;
-    array<QString,2> paramDisegnoEt() const;
 
 };
 

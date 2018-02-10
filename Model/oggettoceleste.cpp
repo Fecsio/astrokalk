@@ -93,6 +93,17 @@ bool OggettoCeleste::operator<(const OggettoCeleste& ogg) const{
     return raggio < ogg.raggio;
 }
 
+array<QString,2> OggettoCeleste::paramDisegnoDim() const{
+    QString r = QString::number(getRaggio());
+    array<QString,2> aux = {paramDisegnoBase(), r};
+    return aux;
+}
+
+array<QString,2> OggettoCeleste::paramDisegnoEt() const{
+    QString r = QString::number(getEta());
+    array<QString,2> aux = {paramDisegnoBase(), r};
+    return aux;
+}
 
 
 

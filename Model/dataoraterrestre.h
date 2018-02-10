@@ -10,6 +10,4 @@ public:
 
 };
 
-std::ostream& operator << (std::ostream& , const DataOraTerrestre&);
-
 #endif // DATAORATERRESTRE_H

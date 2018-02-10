@@ -1,7 +1,7 @@
 #include "asteroide.h"
 #include <math.h>
 
-Asteroide::Asteroide(long double r, double ts, double dm, unsigned int e, double v):
+Asteroide::Asteroide(double r, double ts, double dm, unsigned int e, double v):
     OggettoCeleste(r,ts,dm,e), velocita(v){
     if(v <= 0){
         throw EccInput("Velocità deve essere > 0");
@@ -38,15 +38,4 @@ QString Asteroide::paramDisegnoBase() const{
     return QString("Asteroide");
 }
 
-array<QString,2> Asteroide::paramDisegnoDim() const{
-    QString r = QString::number(getRaggio());
-    array<QString,2> aux = {paramDisegnoBase(),r};
-    return aux;
-}
-
-array<QString,2> Asteroide::paramDisegnoEt() const{
-    QString r = QString::number(getEta());
-    array<QString,2> aux = {paramDisegnoBase(),r};
-    return aux;
-}
 

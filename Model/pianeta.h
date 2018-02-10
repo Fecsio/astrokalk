@@ -10,7 +10,7 @@ private:
     Atmosfera atmosfera;
     const Stella& sole;
 public:
-    Pianeta(long double, double, double, unsigned int, double, double, int , int , int , const Stella &);
+    Pianeta(double, double, double, unsigned int, double, double, int , int , int , const Stella &);
     Pianeta(const Orbitante&, const Atmosfera&, const Stella&);
 
     Atmosfera getAtm() const;
@@ -28,8 +28,6 @@ public:
 
     virtual Pianeta operator+(const Pianeta&) const;
     QString paramDisegnoBase() const;
-    array<QString,2> paramDisegnoDim() const;
-    array<QString,2> paramDisegnoEt() const;
 };
 
 #endif // PIANETA_H

@@ -14,7 +14,5 @@ public:
     DataTerrestre(int);
 };
 
-std::ostream& operator<<(std::ostream& , const DataTerrestre& );
 
 #endif // DATATERRESTRE_H
-//31 536 000

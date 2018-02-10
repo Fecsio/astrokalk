@@ -1,7 +1,7 @@
 #include "stella.h"
 
-Stella::Stella(long double d, double ts, double dm, unsigned int e, double vRot, double mAss, double mApp):
-    CorpoCeleste(d, ts, dm, e, vRot), magnitudineAss(mAss), magnitudineApp(mApp){
+Stella::Stella(double r, double ts, double dm, unsigned int e, double vRot, double mAss, double mApp):
+    CorpoCeleste(r, ts, dm, e, vRot), magnitudineAss(mAss), magnitudineApp(mApp){
     if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10){
             throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
     }
@@ -34,17 +34,5 @@ Stella Stella::operator+ (const Stella& s) const{
 
 QString Stella::paramDisegnoBase() const{
     return QString("Stella");
-}
-
-array<QString,2> Stella::paramDisegnoDim() const{
-    QString r = QString::number(getRaggio());
-    array<QString,2> aux = {paramDisegnoBase(), r};
-    return aux;
-}
-
-array<QString, 2> Stella::paramDisegnoEt() const{
-    QString e = QString::number(getEta());
-    array<QString, 2> aux = {paramDisegnoBase(), e};
-    return aux;
 }
 
