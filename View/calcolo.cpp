@@ -61,7 +61,7 @@ Calcolo::Calcolo(Model *m, QWidget *parent) : QWidget(parent), model(m){
 
     somma = new QPushButton("Somma");
     rapportaV = new QPushButton("Rapporto volume");
-    collisione = new QPushButton("Collisione");
+    collisione = new QPushButton("Collisione con Terra");
 
     volume = new QPushButton("Volume");
     superficie = new QPushButton("Superficie");
