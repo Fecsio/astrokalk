@@ -95,7 +95,7 @@ void Creazione::creaStella(){
         emit erroreI("Raggio, densità e velocità di rotazione devono essere maggiori di 0, età maggiore o uguale a 0");
     }
 
-    else if(mass < -20 || mass >10 || mapp < -26.74 || mapp > 10){
+    else if(mass < -30 || mass >30 || mapp < -38 || mapp > 35){
         emit erroreI("I valori per le magnitudini non sono validi");
     }
 
@@ -117,9 +117,9 @@ void Creazione::creaPianeta(){
     int e = (int)input->getEta().toDouble();
     double v = input->getVrot().toDouble();
     double asse = input->getAsse().toDouble();
-    int az  = input->getAz().toInt();
-    int o = input->getOss().toInt();
-    int ar = input->getAr().toInt();
+    double az  = input->getAz().toDouble();
+    double o = input->getOss().toDouble();
+    double ar = input->getAr().toDouble();
     int index_stella = input->getSole().toInt();
 
     if(r <= 0 || d <= 0 || v <= 0 || asse <= 0 || e<0){

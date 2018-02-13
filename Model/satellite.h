@@ -16,12 +16,11 @@ public:
     int rivoluzioniAnnue() const;
     bool rotazioneSincrona() const;
 
-    virtual Satellite operator+(const Satellite&) const;
+    Satellite operator+(const Satellite&) const;
 
     DataOraTerrestre periodoOrbitale() const;
     double velOrbitale() const;
     double distanzaSole() const;
-    QString paramDisegnoBase() const;
 
 };
 

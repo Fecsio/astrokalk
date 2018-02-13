@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
     QString style(stylesheet.readAll());
     k.setStyleSheet(style);
     k.setMaximumSize(k.getSizeKalk());
-
     k.show();
     return a.exec();
 }

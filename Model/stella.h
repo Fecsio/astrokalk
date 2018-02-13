@@ -5,8 +5,8 @@
 class Stella: public CorpoCeleste
 {
 private:
-    double magnitudineAss; //cioè magnitudine a 10 parsec di distanza, da -20 a 10
-    double magnitudineApp; // cioè magnitudine dalla terra, da -26.74(sole) a 10
+    double magnitudineAss; //cioè magnitudine a 10 parsec di distanza, da -30 a 30
+    double magnitudineApp; // cioè magnitudine dalla terra, da -38(sole) a 35
 public:
     Stella(double, double, double, unsigned int, double, double, double);
     Stella(const CorpoCeleste&, double, double);
@@ -15,9 +15,8 @@ public:
     double getMApp() const;
 
     double distanzaTerra() const;
-    virtual Stella operator+(const Stella&) const;
+    Stella operator+(const Stella&) const;
 
-    QString paramDisegnoBase() const;
 
 };
 

@@ -11,6 +11,7 @@ CorpoCeleste::CorpoCeleste(double r, double ts, double dm, unsigned int e, doubl
     }
 }
 
+CorpoCeleste::~CorpoCeleste(){}
 
 double CorpoCeleste::getVRot() const{
     return velRotazione;

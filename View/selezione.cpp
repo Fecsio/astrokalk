@@ -15,7 +15,7 @@ Selezione::Selezione(Model* m, QWidget *parent): QGroupBox("Dettagli selezionato
     asse = new QLineEdit;
     az = new QLineEdit;
     oss = new QLineEdit;
-    arg = new QLineEdit;
+    alt = new QLineEdit;
     vel = new QLineEdit;
     sole = new QLineEdit;
     pianeta = new QLineEdit;
@@ -30,7 +30,7 @@ Selezione::Selezione(Model* m, QWidget *parent): QGroupBox("Dettagli selezionato
     QLabel *asseLabel = new QLabel("Asse:");
     QLabel *azLabel = new QLabel("Azo:");
     QLabel *ossLabel = new QLabel("Oss:");
-    QLabel *arLabel = new QLabel("Arg:");
+    QLabel *arLabel = new QLabel("Alt:");
     QLabel *velLabel = new QLabel("Vel:");
     QLabel *sLabel = new QLabel("Sole:");
     QLabel *pLabel = new QLabel("Pian:");
@@ -62,7 +62,7 @@ Selezione::Selezione(Model* m, QWidget *parent): QGroupBox("Dettagli selezionato
     layout->addWidget(asse,0,3);
     layout->addWidget(az,1,3);
     layout->addWidget(oss,2,3);
-    layout->addWidget(arg,3,3);
+    layout->addWidget(alt,3,3);
     layout->addWidget(vel,4,3);
     layout->addWidget(mAss,5,3);
     layout->addWidget(mApp,6,3);
@@ -144,7 +144,7 @@ void Selezione::dettagliPia(QListWidgetItem * q){
     velRot->setDisabled(false);
     az->setDisabled(false);
     oss->setDisabled(false);
-    arg->setDisabled(false);
+    alt->setDisabled(false);
     sole->setDisabled(false);
     asse->setDisabled(false);
 
@@ -156,7 +156,7 @@ void Selezione::dettagliPia(QListWidgetItem * q){
     asse->setText(QString::number(d.getSemiA()));
     az->setText(QString::number(d.getAz()));
     oss->setText(QString::number(d.getOss()));
-    arg->setText(QString::number(d.getAr()));
+    alt->setText(QString::number(d.getAl()));
     sole->setText(QString::number(d.getSole()));
 }
 

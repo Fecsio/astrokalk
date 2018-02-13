@@ -13,11 +13,11 @@ Disegno::Disegno(Model* m, QWidget *parent) : QWidget(parent), model(m){
     top->setStyleSheet("font-weight: bold;");
 
     QLabel *HelpLabel = new QLabel;
-    HelpLabel->setToolTip("<p> A = asteroide, S = stella, P = pianeta, SA = satellite.</p> <p>Il numero si riferisce all' indice corrispondente in creati^.</p> <p>Seguire la sintassi del placeholder.</p>");
+    HelpLabel->setToolTip("<p> A = asteroide, S = stella, P = pianeta, L = (luna)satellite.</p> <p>Il numero si riferisce all' indice corrispondente in creati^.</p> <p>Seguire la sintassi del placeholder.</p>");
     HelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
-    disegnaInScalaD = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, SA-4.'", "Disegna in scala");
-    disegnaInScalaE = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, SA-4.'", "Disegna in ordine di età");
+    disegnaInScalaD = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, L-4.'", "Disegna in scala");
+    disegnaInScalaE = new PulsanteConInput("Lettera - numero, es: 'A-0, S-3, L-4.'", "Disegna in ordine di età");
     ordinati = new QLabel;
     ordinati->setMinimumWidth(this->width()/3);
     ordinati->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
@@ -110,7 +110,7 @@ void Disegno::disegnaS(){
         err.exec();
     }
 
-    else if(!((QRegularExpression("^([A|S|P|SA]{1}(\\-){1}[0-9]{1,3}[,|.]{1}){1,}$").match(s)).hasMatch())){
+    else if(!((QRegularExpression("^([L|A|S|P]{1}(\\-){1}[0-9]{1,3}[,|.]{1}){1,}$").match(s)).hasMatch())){
         err.setInformativeText("<p align = 'center'> L'input non ha il formato corretto </p>");
         layoutmsg->addItem(horizontalSpacer,layoutmsg->rowCount(),0,1,layoutmsg->columnCount());
         err.exec();

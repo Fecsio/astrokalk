@@ -20,6 +20,8 @@ public:
 
     void fusione(const OggettoCeleste&);
 
+    ~CorpoCeleste() = 0;
+
 protected:
     static const double G;
 

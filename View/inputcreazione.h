@@ -40,7 +40,7 @@ private:
     QGroupBox *atmosfera;
     QLineEdit *azoto;
     QLineEdit *ossigeno;
-    QLineEdit *argon;
+    QLineEdit *altro;
     QLineEdit *sole;
     QLineEdit *velocita;
     QLineEdit *pianeta;

@@ -10,7 +10,7 @@ private:
     Atmosfera atmosfera;
     const Stella& sole;
 public:
-    Pianeta(double, double, double, unsigned int, double, double, int , int , int , const Stella &);
+    Pianeta(double, double, double, unsigned int, double, double, double , double , double , const Stella &);
     Pianeta(const Orbitante&, const Atmosfera&, const Stella&);
 
     Atmosfera getAtm() const;
@@ -19,15 +19,13 @@ public:
     double ESI() const;
     bool Abitabile() const;
 
-    void disegnaConOrb() const;
     DataTerrestre etaExtraTerrestre(int , int, int) const;
 
     DataOraTerrestre periodoOrbitale() const;
     double velOrbitale() const;
     double distanzaSole() const;
 
-    virtual Pianeta operator+(const Pianeta&) const;
-    QString paramDisegnoBase() const;
+    Pianeta operator+(const Pianeta&) const;
 };
 
 #endif // PIANETA_H

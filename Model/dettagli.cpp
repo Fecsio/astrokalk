@@ -23,7 +23,7 @@ Dettagli::Dettagli(Model* m, const OggettoCeleste * const c) : model(m), raggio(
         semiA = p->getAsse();
         az = p->getAtm().getAz();
         oss = p->getAtm().getO();
-        ar = p->getAtm().getAr();
+        al = p->getAtm().getAl();
         sole = model->getPos(&(p->getStella()));
     }
 
@@ -67,8 +67,8 @@ double Dettagli::getOss() const{
     return oss;
 }
 
-double Dettagli::getAr() const{
-    return ar;
+double Dettagli::getAl() const{
+    return al;
 }
 
 double Dettagli::getVel() const{

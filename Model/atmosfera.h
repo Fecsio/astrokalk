@@ -6,14 +6,14 @@ class Atmosfera
 {
     double ossigeno;
     double azoto;
-    double argon;
+    double altro;
 public:
     Atmosfera(double =21, double =78, double = 1);
 
     Atmosfera operator+(const Atmosfera&) const;
     double getO() const;
     double getAz() const;
-    double getAr() const;
+    double getAl() const;
 
 };
 

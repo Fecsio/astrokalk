@@ -8,62 +8,48 @@ InputCreazione::InputCreazione(Model* m, QWidget *parent) : QWidget(parent), mod
 
     QLabel *rLabel = new QLabel("Raggio:");
     raggio = new QLineEdit;
-    //raggio->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *tLabel = new QLabel("Temperatura:");
     tempSuperficiale = new QLineEdit;
-    //tempSuperficiale->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *dLabel = new QLabel("Densità:");
     densita = new QLineEdit;
-    //densita->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *eLabel = new QLabel("Età:");
     eta = new QLineEdit;
-    //eta->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *vRotLabel = new QLabel("Vel. rotazione:");
     velRot = new QLineEdit;
-   // velRot->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *sAsseLabel = new QLabel("Semiasse:");
-    sAsseLabel->setToolTip("1 UA = 150.000 km");
     semiAsse = new QLineEdit;
-    //semiAsse->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     atmosfera = new QGroupBox("Atmosfera:");
     QHBoxLayout *layoutAtm = new QHBoxLayout(atmosfera);
     atmosfera->setStyleSheet("font-weight: normal;");
     azoto = new QLineEdit;
     ossigeno = new QLineEdit;
-    argon = new QLineEdit;
+    altro = new QLineEdit;
     layoutAtm->addWidget(azoto);
     layoutAtm->addWidget(ossigeno);
-    layoutAtm->addWidget(argon);
+    layoutAtm->addWidget(altro);
     QLabel *atmUnitLabel = new QLabel("%");
     layoutAtm->addWidget(atmUnitLabel);
 
     QLabel *sLabel = new QLabel("Sole:");
     sole = new QLineEdit;
-    //sole->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *pLabel = new QLabel("Pianeta:");
     pianeta = new QLineEdit;
-    //pianeta->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *vLabel = new QLabel("Velocità:");
     velocita = new QLineEdit;
-    //velocita->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *magnAssLabel= new QLabel("M. assoluta:");
-    magnAssLabel->setToolTip("Magnitudine assoluta, da -20 a 10");
     mAss = new QLineEdit;
-    //mAss->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     QLabel *magnAppLabel= new QLabel("M. apparente:");
-    magnAppLabel->setToolTip("Magnitudine apparente, da -26.74 a 10");
     mApp = new QLineEdit;
-    //mApp->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     crea = new QPushButton("Crea");
     crea->setDisabled(true);
@@ -101,7 +87,7 @@ InputCreazione::InputCreazione(Model* m, QWidget *parent) : QWidget(parent), mod
     sAHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *aHelpLabel = new QLabel;
-    aHelpLabel->setToolTip("Azoto, ossigeno e argon (la somma deve essere <strong>100</strong>)");
+    aHelpLabel->setToolTip("Azoto, ossigeno e altro (la somma deve essere <strong>100</strong>)");
     aHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *pHelpLabel = new QLabel;
@@ -117,11 +103,11 @@ InputCreazione::InputCreazione(Model* m, QWidget *parent) : QWidget(parent), mod
     vHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *mAssHelpLabel = new QLabel;
-    mAssHelpLabel->setToolTip("Magnitudine assoluta, compresa tra -20 e 10");
+    mAssHelpLabel->setToolTip("Magnitudine assoluta, compresa tra -30 e 30");
     mAssHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     QLabel *mAppHelpLabel = new QLabel;
-    mAppHelpLabel->setToolTip("Magniudine apparente, compresa tra -26.74 e 10");
+    mAppHelpLabel->setToolTip("Magniudine apparente, compresa tra -38 e 35");
     mAppHelpLabel->setPixmap(QPixmap(":/icone/View/Icone/help.svg"));
 
     inputs->addWidget(rLabel,0,1);
@@ -216,7 +202,7 @@ void InputCreazione::cambiaInput(int selezione){
             semiAsse->setDisabled(true);
             azoto->setDisabled(true);
             ossigeno->setDisabled(true);
-            argon->setDisabled(true);
+            altro->setDisabled(true);
             pianeta->setDisabled(true);
             sole->setDisabled(true);
             mAss->setDisabled(true);
@@ -234,7 +220,7 @@ void InputCreazione::cambiaInput(int selezione){
             semiAsse->setDisabled(true);
             azoto->setDisabled(true);
             ossigeno->setDisabled(true);
-            argon->setDisabled(true);
+            altro->setDisabled(true);
             pianeta->setDisabled(true);
             sole->setDisabled(true);
             velocita->setDisabled(true);
@@ -254,13 +240,14 @@ void InputCreazione::cambiaInput(int selezione){
             velRot->setDisabled(false);
             azoto->setDisabled(false);
             ossigeno->setDisabled(false);
-            argon->setDisabled(false);
+            altro->setDisabled(false);
             sole->setDisabled(false);
             semiAsse->setDisabled(false);
 
             mAss->setDisabled(true);
             mApp->setDisabled(true);
             pianeta->setDisabled(true);
+            velocita->setDisabled(true);
 
             disconnect(crea,0,0,0);
             connect(crea,SIGNAL(clicked(bool)),
@@ -284,7 +271,7 @@ void InputCreazione::cambiaInput(int selezione){
             velocita->setDisabled(true);
             azoto->setDisabled(true);
             ossigeno->setDisabled(true);
-            argon->setDisabled(true);
+            altro->setDisabled(true);
 
             disconnect(crea,0,0,0);
             connect(crea,SIGNAL(clicked(bool)),
@@ -333,7 +320,7 @@ QString InputCreazione::getOss() const{
 }
 
 QString InputCreazione::getAr() const{
-    return argon->text();
+    return altro->text();
 }
 
 QString InputCreazione::getSole() const{

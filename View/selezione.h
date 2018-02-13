@@ -21,7 +21,7 @@ private:
     QLineEdit *asse;
     QLineEdit *az;
     QLineEdit *oss;
-    QLineEdit *arg;
+    QLineEdit *alt;
     QLineEdit *vel;
     QLineEdit *sole;
     QLineEdit *pianeta;

@@ -12,7 +12,7 @@ public:
     Model();
     void newAsteroide(double, double, double , unsigned long int, double);
     void newStella(double, double, double, unsigned long int, double, double, double);
-    void newPianeta(double, double, double, unsigned long int, double,double, int ,int ,int , Stella&);
+    void newPianeta(double, double, double, unsigned long int, double, double, double , double , double , Stella&);
     void newSatellite(double, double, double, unsigned long int, double,double, Pianeta&);
 
     int getSizeCreati(int ) const;
@@ -31,8 +31,12 @@ public:
 
     QString getResult() const;
 
+    static vector<array<QString,2>> disegnoInScala(vector<const OggettoCeleste *>&);
+    static vector<array<QString,2>> disegnoInScalaEta(vector<const OggettoCeleste *>&);
+
     vector<array<QString,2>> disegna(const QString&, const QString&);
     ~Model();
+
 private:
     vector<const Asteroide*> astCreati;
     vector<const Stella*> steCreate;

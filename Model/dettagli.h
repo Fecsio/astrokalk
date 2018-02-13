@@ -18,7 +18,7 @@ private:
     double semiA;
     double az;
     double oss;
-    double ar;
+    double al;
     double vel;
     double mAss;
     double mApp;
@@ -36,7 +36,7 @@ public:
     double getSemiA() const;
     double getAz() const;
     double getOss() const;
-    double getAr() const;
+    double getAl() const;
     double getVel() const;
     double getMAss() const;
     double getMApp() const;

@@ -2,14 +2,14 @@
 
 Stella::Stella(double r, double ts, double dm, unsigned int e, double vRot, double mAss, double mApp):
     CorpoCeleste(r, ts, dm, e, vRot), magnitudineAss(mAss), magnitudineApp(mApp){
-    if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10){
-            throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
+    if(mAss < -30 || mAss >30 || mApp < -38 || mApp > 35){
+            throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -30 <= assoluta <= 30, -38 <= apparente <= 35");
     }
 }
 
 Stella::Stella(const CorpoCeleste& c, double mAss, double mApp): CorpoCeleste(c),magnitudineAss(mAss), magnitudineApp(mApp){
-    if(mAss < -20 || mAss >10 || mApp < -26.74 || mApp > 10)
-        throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -20 <= assoluta <= 10, -26.74 <= apparente <= 10");
+    if(mAss < -30 || mAss >30 || mApp < -38 || mApp > 35)
+        throw EccInput("Valori per le magnitudi invalidi; rispettivamente: -30 <= assoluta <= 30, -38 <= apparente <= 35");
 }
 
 double Stella::getMAss() const{
@@ -31,8 +31,3 @@ Stella Stella::operator+ (const Stella& s) const{
     aux.magnitudineApp = (magnitudineApp+s.magnitudineApp)/2;
     return aux;
 }
-
-QString Stella::paramDisegnoBase() const{
-    return QString("Stella");
-}
-

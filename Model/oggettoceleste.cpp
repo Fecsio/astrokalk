@@ -7,11 +7,12 @@ const double OggettoCeleste::pi= 3.141592653589793;
 
 OggettoCeleste::OggettoCeleste(double r, double ts, double dm, unsigned int e): raggio(r),
     temperaturaSuperficiale(ts), densitaMedia(dm), eta(e){
-    if(r <= 0 || ts <= 0){
+    if(r <= 0 || dm <= 0){
         throw EccInput("Raggio e temperatura superficiale devono essere > 0");
     }
 }
 
+OggettoCeleste::~OggettoCeleste(){}
 
 double OggettoCeleste::getRaggio() const{
     return raggio;
@@ -42,25 +43,6 @@ vector<const OggettoCeleste*> OggettoCeleste::ordinaPer(vector<const OggettoCele
 
     return v;
 }
-
-vector<array<QString,2>> OggettoCeleste::disegnoInScala(vector<const OggettoCeleste *>& vec){
-    vector<array<QString,2>> aux;
-    vec=ordinaPer(vec,'v');
-    for(vector<const OggettoCeleste*>::iterator it = vec.begin(); it!=vec.end(); ++it){
-        aux.push_back((*it)->paramDisegnoDim());
-    }
-    return aux;
-}
-
-vector<array<QString,2>> OggettoCeleste::disegnoInScalaEta(vector<const OggettoCeleste *>& vec){
-    vector<array<QString,2>> aux;
-    vec=ordinaPer(vec,'e');
-    for(vector<const OggettoCeleste*>::iterator it = vec.begin(); it!=vec.end(); ++it){
-        aux.push_back((*it)->paramDisegnoEt());
-    }
-    return aux;
-}
-
 
 double OggettoCeleste::Volume()const{
     return (pi/6)*pow(raggio*2, 3);
@@ -93,17 +75,6 @@ bool OggettoCeleste::operator<(const OggettoCeleste& ogg) const{
     return raggio < ogg.raggio;
 }
 
-array<QString,2> OggettoCeleste::paramDisegnoDim() const{
-    QString r = QString::number(getRaggio());
-    array<QString,2> aux = {paramDisegnoBase(), r};
-    return aux;
-}
-
-array<QString,2> OggettoCeleste::paramDisegnoEt() const{
-    QString r = QString::number(getEta());
-    array<QString,2> aux = {paramDisegnoBase(), r};
-    return aux;
-}
 
 
 

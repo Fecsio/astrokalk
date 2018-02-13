@@ -37,7 +37,7 @@ void Model::newStella(double d, double ts, double dm, unsigned long int e, doubl
     steCreate.push_back(aux);
 }
 
-void Model::newPianeta(double d, double ts, double dm, unsigned long int e, double vRot,double semiA, int ossigeno, int azoto, int argon, Stella& s){
+void Model::newPianeta(double d, double ts, double dm, unsigned long int e, double vRot,double semiA, double ossigeno, double azoto, double argon, Stella& s){
     Pianeta *aux = new Pianeta(d,ts,dm,e,vRot,semiA,ossigeno,azoto,argon,s);
     piaCreati.push_back(aux);
 }
@@ -144,7 +144,7 @@ void Model::calcola(const OggettoCeleste *obj, const QString& op, const QString 
         result = "Su questo corpo celeste peseresti " + QString::number(static_cast<const CorpoCeleste*>(obj)->CalcPeso(param.toDouble())) + " chili ";
     }
 
-    else if(op == "Collisione"){
+    else if(op == "Collisione con Terra"){
         ConseguenzaCollisione aux = static_cast<const Asteroide*>(obj)->Collisione();
         result = "La collisione rilascia " + QString::number(aux.getEn()) + " milioni di megaton di energia e provoca una magnitudo " + QString::number(aux.getMa());
     }
@@ -178,7 +178,7 @@ void Model::calcola(const OggettoCeleste *obj, const QString& op, const QString 
       QString a = ql.at(2);
 
       DataTerrestre e = static_cast<const Pianeta*>(obj)->etaExtraTerrestre(g.toInt(), m.toInt(), a.toInt());
-      result = "Su questo pianeta avresti: " + QString::number(e.AnniInteri()) + "anni terrestri";
+      result = "Su questo pianeta avresti: " + QString::number(e.AnniInteri()) + "anni";
     }
 
     else if(op == "Rotazione sincrona?"){
@@ -193,7 +193,7 @@ void Model::calcola(const OggettoCeleste *obj, const QString& op, const QString 
     }
 
     else if(op == "Rivoluzioni in un anno"){
-        result = "Il satellite compie " + QString::number(static_cast<const Satellite*>(obj)->rivoluzioniAnnue()) + " in un anno del pianeta";
+        result = "Il satellite compie " + QString::number(static_cast<const Satellite*>(obj)->rivoluzioniAnnue()) + " rivoluzioni in un anno del pianeta";
     }
 
     else if(op == "Durata giorno"){
@@ -202,8 +202,9 @@ void Model::calcola(const OggettoCeleste *obj, const QString& op, const QString 
     }
 
     else if(op == "Vel. orbitale"){
-        result = QString::number(static_cast<const Orbitante*>(obj)->velOrbitale());
+        result = QString::number(static_cast<const Orbitante*>(obj)->velOrbitale()) + "km/s";
     }
+
 
 }
 
@@ -247,6 +248,37 @@ QString Model::getResult() const{
     return result;
 }
 
+vector<array<QString,2>> Model::disegnoInScala(vector<const OggettoCeleste *>& vec){
+    vector<array<QString,2>> aux;
+    vec=OggettoCeleste::ordinaPer(vec,'v');
+    for(vector<const OggettoCeleste*>::iterator it = vec.begin(); it!=vec.end(); ++it){
+        array<QString, 2> temp;
+        if(dynamic_cast<const Asteroide*>(*it)) temp[0] = "Asteroide";
+        else if(dynamic_cast<const Stella*>(*it)) temp[0] = "Stella";
+        else if(dynamic_cast<const Pianeta*>(*it)) temp[0] = "Pianeta";
+        else if(dynamic_cast<const Satellite*>(*it)) temp[0] = "Satellite";
+        temp[1] = QString::number((*it)->getRaggio());
+        aux.push_back(temp);
+    }
+    return aux;
+}
+
+vector<array<QString,2>> Model::disegnoInScalaEta(vector<const OggettoCeleste *>& vec){
+    vector<array<QString,2>> aux;
+    vec=OggettoCeleste::ordinaPer(vec,'e');
+    for(vector<const OggettoCeleste*>::iterator it = vec.begin(); it!=vec.end(); ++it){
+        array<QString, 2> temp;
+        if(dynamic_cast<const Asteroide*>(*it)) temp[0] = "Asteroide";
+        else if(dynamic_cast<const Stella*>(*it)) temp[0] = "Stella";
+        else if(dynamic_cast<const Pianeta*>(*it)) temp[0] = "Pianeta";
+        else if(dynamic_cast<const Satellite*>(*it)) temp[0] = "Satellite";
+        temp[1] = QString::number((*it)->getEta());
+        aux.push_back(temp);
+    }
+    return aux;
+}
+
+
 vector<array<QString,2>> Model::disegna(const QString& tipo, const QString& elem){
     QStringList ql = elem.split(QRegExp("[, | .]"));
     vector<const OggettoCeleste*> aux;
@@ -272,21 +304,27 @@ vector<array<QString,2>> Model::disegna(const QString& tipo, const QString& elem
             if(pos >= steCreate.size()) {
                 ok = false;
             }
-            aux.push_back(steCreate[pos]);
+            else{
+                aux.push_back(steCreate[pos]);
+            }
         }
 
         else if(t == "P" && ok){
             if(pos >= piaCreati.size()) {
                 ok = false;
             }
-            aux.push_back(piaCreati[pos]);
+            else{
+                aux.push_back(piaCreati[pos]);
+            }
         }
 
-        else if(t == "SA" && ok){
+        else if(t == "L" && ok){
             if(pos >= satCreati.size()) {
                 ok = false;
             }
-            aux.push_back(satCreati[pos]);
+            else{
+                aux.push_back(satCreati[pos]);
+            }
         }
 
         if(!ok) throw EccInput("Indice errato");
@@ -295,15 +333,14 @@ vector<array<QString,2>> Model::disegna(const QString& tipo, const QString& elem
     vector<array<QString,2>> ret;
 
     if(tipo == "Disegna in scala"){
-        ret = OggettoCeleste::disegnoInScala(aux);
+        ret = disegnoInScala(aux);
     }
 
     else{
-       ret = OggettoCeleste::disegnoInScalaEta(aux);
+       ret = disegnoInScalaEta(aux);
     }
 
     auto it = aux.begin();
-    QString tipoOgg;
     result.clear();
     result = "Indici in ordine: ";
     for(; it!=aux.end(); ++it){
